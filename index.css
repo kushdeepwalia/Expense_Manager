@@ -36,14 +36,12 @@ body{
 }
 .head .buttons{
     margin-right: 20px;
-    /* background-color: blue; */
     width: 200px;
     height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-
 #registerBtn{
     margin-left: 20px;
 }
@@ -54,6 +52,10 @@ body{
     font-size: 20px;
     cursor: pointer;
     outline: none;
+}
+.content-why{
+    z-index: 1000;
+    padding-top: 80vh;
 }
 @media(max-width:768px){
     .head a .logo-head{

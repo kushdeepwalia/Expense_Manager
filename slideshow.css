@@ -1,0 +1,49 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.slider-frame{
+    overflow: hidden;
+    position: fixed;
+    height: 80vh;
+    width: 100vw;
+}
+@keyframes slide_animation{
+     0%{right: 0vw;}
+    10%{right: 0vw;}
+    20%{right: 100vw;}
+    30%{right: 100vw;}
+    40%{right: 100vw;}
+    50%{right: 200vw;}
+    60%{right: 200vw;}
+    70%{right: 200vw;}
+    80%{right: 300vw;}
+    90%{right: 300vw;}
+   100%{right: 0vw;}
+}
+.slide-images{
+    width: 500vw;
+    height: inherit;
+    position: relative;
+    animation: slide_animation;
+    animation-duration: 20s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-play-state: running;
+    padding-left: 0;
+}
+.img-container{
+    height: 50vh;
+    width: 100vw;
+    position: relative;
+    float: left;
+    padding-left: 0;
+}
+.img-container img{
+    position: relative;
+    top: 10vh;
+    padding-left: 0;
+    width: 100vw;
+    height: 70vh;
+}
