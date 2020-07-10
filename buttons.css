@@ -83,7 +83,7 @@
     pointer-events: all;
     opacity: 1;
 }
-@media(max-width:426px){
+@media(max-width:500px){
     .loginTable tr{
         width: 40px;
     }

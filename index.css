@@ -86,7 +86,7 @@ body{
         outline: none;
     }
 }
-@media(max-width:426px){
+@media(max-width:500px){
     .head .logo-head{
         display: flex;
         align-items: center;
