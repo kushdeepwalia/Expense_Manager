@@ -16,19 +16,23 @@ body{
     justify-content: space-between;
     align-items: center;
 }
-.head .logo-head{
+.head a{
+    text-decoration: none;
+    color: black;
+}
+.head a .logo-head{
     display: flex;
     align-items: center;
     padding-left: 10px;
     height: inherit;
 }
-.head .logo-head img{
+.head a .logo-head img{
     height: 8vh;
     border-radius: 50%;
     margin-right: 10px;
 }
-.head .logo-head .mainhead{
-    font-size: 40px;
+.head a .logo-head .mainhead{
+    font-size: 35px;
 }
 .head .buttons{
     margin-right: 20px;
@@ -52,19 +56,19 @@ body{
     outline: none;
 }
 @media(max-width:768px){
-    .head .logo-head{
+    .head a .logo-head{
         display: flex;
         align-items: center;
         padding-left: 5px;
         height: inherit;
     }
-    .head .logo-head img{
+    .head a .logo-head img{
         height: 6vh;
         border-radius: 50%;
         margin-right: 5px;
     }
-    .head .logo-head .mainhead{
-        font-size: 40px;
+    .head a .logo-head .mainhead{
+        font-size: 35px;
     }
     .head .buttons{
         margin-right: 10px;
@@ -81,7 +85,7 @@ body{
         background-color: transparent;
         border: none;
         border-bottom:1px solid;
-        font-size: 28px;
+        font-size: 24px;
         cursor: pointer;
         outline: none;
     }
