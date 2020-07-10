@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Expense Manager</title>
+    <link rel="stylesheet" href="buttons.css">
     <link rel="stylesheet" href="loading.css">
     <link rel="stylesheet" href="custom_scroll.css">
     <link rel="stylesheet" href="index.css">
@@ -21,11 +22,31 @@
                 <span class="mainhead">Expense Manager</span>
             </div>
             <div class="buttons">
-                <button class="login">Login</button>
-                <button class="Register">Register</button>
+                <button data-modal-target="#login" id="loginBtn">Login</button>
+                <div class="modal" id="login">
+                    <div class="modal-heading">
+                        <div class="title">Add Income</div>
+                        <button data-close-button class="close-button">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        form to be made here
+                    </div>
+                </div>
+                <button data-modal-target="#register" id="registerBtn">Register</button>
+                <div class="modal" id="register">
+                    <div class="modal-heading">
+                        <div class="title">Add Expenses</div>
+                        <button data-close-button class="close-button">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        form to be made here 
+                    </div>
+                </div>
+                <div id="overlay"></div>
             </div>
         </header>
     </div>
+    <script src="buttons.js"></script>
     <script src="loader.js"></script>
 </body>
 </html>
