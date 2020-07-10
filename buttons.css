@@ -45,7 +45,9 @@
     display:flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(93, 24, 28, 0.533);
+    background-color: rgba(93, 24, 28);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 .modal-body .loginTable tr{
     line-height: 40px;
@@ -79,7 +81,7 @@
     height: 40px;
     font-size: 20px;
     font-weight: bold;
-    background-color: rgba(255, 255, 255, 0.459);
+    background-color: rgba(255, 255, 255);
     color: rgb(94, 24, 27);
     cursor: pointer;
 }

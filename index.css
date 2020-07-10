@@ -53,9 +53,9 @@ body{
     cursor: pointer;
     outline: none;
 }
-.content-why{
-    z-index: 1000;
-    padding-top: 80vh;
+li{
+    list-style-type: square;
+    padding-left: 10px;
 }
 @media(max-width:768px){
     .head a .logo-head{

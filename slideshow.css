@@ -5,9 +5,9 @@
 }
 .slider-frame{
     overflow: hidden;
-    position: fixed;
     height: 80vh;
-    width: 100vw;
+    width: 99vw;
+    margin: 0 auto;
 }
 @keyframes slide_animation{
      0%{right: 0vw;}
