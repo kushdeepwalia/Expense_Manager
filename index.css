@@ -1,0 +1,44 @@
+*{
+    margin: 0 0;
+    padding: 0 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: white;
+}
+.head{
+    background-color: red;
+    width: 100vw;
+    height: 10vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.head .logo-head{
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    height: inherit;
+}
+.head .logo-head img{
+    height: 8vh;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.head .logo-head .mainhead{
+    font-size: 40px;
+}
+.head .buttons{
+    margin-right: 10px;
+}
+
+@media(max-width:700px){
+    .head .logo-head img{
+        height: 6vh;
+        border-radius: 50%;
+        margin-right: 5px;
+    }
+    .head .logo-head .mainhead{
+        font-size: 22px;
+    }
+}
