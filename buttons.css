@@ -1,22 +1,7 @@
 *,*::after,*::before{
     box-sizing: border-box;
 }
-#incomeButton{
-    outline: none;
-    border: 1px solid;
-    border-bottom-right-radius: 10px;
-    border-top-right-radius: 10px;
-    background-color: red;
-    cursor: pointer;
-}
-#expenseButton{
-    outline: none;
-    border: 1px solid;
-    border-bottom-right-radius: 10px;
-    border-top-right-radius: 10px;
-    background-color: red;
-    cursor: pointer;
-}
+
 .modal{
     position: fixed;
     top: 50%;
@@ -55,8 +40,34 @@
 }
 .modal-body{
     padding: 10px 15px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
 }
-
+.modal-body .loginTable tr{
+    line-height: 40px;
+}
+.modal-body .loginTable tr .field{
+    font-size: 23px;
+    font-weight: bold;
+}
+.modal-body .loginTable tr .box{
+    padding-left: 10px;
+}
+::placeholder{
+    color: white;
+    opacity: 0.4;
+    font-size: 12px;
+}
+#Username,#Password,#Amount{
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid black;
+    padding-left: 5px;
+    outline:none;
+    color: white;
+    font-size: 15px;
+}
 #overlay{
     position: fixed;
     opacity: 0;
@@ -71,4 +82,18 @@
 #overlay.active{
     pointer-events: all;
     opacity: 1;
+}
+@media(max-width:368px){
+    .loginTable tr{
+        width: 40px;
+    }
+    #Username,#Password,#Amount{
+        background-color: transparent;
+        border: none;
+        border-bottom: 1px solid black;
+        padding-left: 5px;
+        outline:none;
+        color: white;
+        font-size: 10px;
+    }
 }

@@ -7,7 +7,7 @@ body{
     background-color: white;
 }
 .head{
-    background-color: red;
+    background-color: #5e181b;
     width: 100vw;
     height: 10vh;
     position: fixed;
@@ -31,16 +31,93 @@ body{
     font-size: 40px;
 }
 .head .buttons{
-    margin-right: 10px;
+    margin-right: 20px;
+    /* background-color: blue; */
+    width: 200px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-@media(max-width:700px){
+#registerBtn{
+    margin-left: 20px;
+}
+#loginBtn,#registerBtn{
+    background-color: transparent;
+    border: none;
+    border-bottom:1px solid;
+    font-size: 20px;
+    cursor: pointer;
+    outline: none;
+}
+@media(max-width:768px){
+    .head .logo-head{
+        display: flex;
+        align-items: center;
+        padding-left: 5px;
+        height: inherit;
+    }
     .head .logo-head img{
         height: 6vh;
         border-radius: 50%;
         margin-right: 5px;
     }
     .head .logo-head .mainhead{
-        font-size: 22px;
+        font-size: 40px;
+    }
+    .head .buttons{
+        margin-right: 10px;
+        width: 230px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    #registerBtn{
+        margin-left: 20px;
+    }
+    #loginBtn,#registerBtn{
+        background-color: transparent;
+        border: none;
+        border-bottom:1px solid;
+        font-size: 28px;
+        cursor: pointer;
+        outline: none;
+    }
+}
+@media(max-width:368px){
+    .head .logo-head{
+        display: flex;
+        align-items: center;
+        padding-left: 5px;
+        height: inherit;
+    }
+    .head .logo-head img{
+        height: 6vh;
+        border-radius: 50%;
+        margin-right: 5px;
+    }
+    .head .logo-head .mainhead{
+        font-size: 20px;
+    }
+    .head .buttons{
+        margin-right: 5px;
+        width: 150px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    #registerBtn{
+        margin-left: 10px;
+    }
+    #loginBtn,#registerBtn{
+        background-color: transparent;
+        border: none;
+        border-bottom:1px solid;
+        font-size: 18px;
+        cursor: pointer;
+        outline: none;
     }
 }

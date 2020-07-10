@@ -25,21 +25,53 @@
                 <button data-modal-target="#login" id="loginBtn">Login</button>
                 <div class="modal" id="login">
                     <div class="modal-heading">
-                        <div class="title">Add Income</div>
+                        <div class="title">Login</div>
                         <button data-close-button class="close-button">&times;</button>
                     </div>
                     <div class="modal-body">
-                        form to be made here
+                        <form action="login.php" method="post" autocomplete="off">
+                            <table class="loginTable">
+                                <tr>
+                                    <td class="field">Username</td>
+                                    <td class="box"><input type="text" name="Username" id="Username" placeholder="Enter your Username"></td>
+                                </tr>
+                                <tr>
+                                    <td class="field">Password</td>
+                                    <td class="box"><input type="password" name="Password" id="Password" placeholder="Enter your Password"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" align="center"><input type="submit" value="Login"></td>
+                                </tr>
+                            </table>
+                        </form>
                     </div>
                 </div>
                 <button data-modal-target="#register" id="registerBtn">Register</button>
                 <div class="modal" id="register">
                     <div class="modal-heading">
-                        <div class="title">Add Expenses</div>
+                        <div class="title">Register</div>
                         <button data-close-button class="close-button">&times;</button>
                     </div>
                     <div class="modal-body">
-                        form to be made here 
+                        <form action="register.php" method="post" autocomplete="off">
+                            <table class="loginTable">
+                                <tr>
+                                    <td class="field">Username</td>
+                                    <td class="box"><input type="text" name="Username" id="Username" placeholder="Enter your Username"></td>
+                                </tr>
+                                <tr>
+                                    <td class="field">Password</td>
+                                    <td class="box"><input type="password" name="Password" id="Password" placeholder="Enter your Password"></td>
+                                </tr>
+                                <tr>
+                                    <td class="field">Amount</td>
+                                    <td class="box"><input type="number" name="Amount" id="Amount" placeholder="Enter any amount to your wallet"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" align="center"><input type="submit" value="Register"></td>
+                                </tr>
+                            </table>
+                        </form>
                     </div>
                 </div>
                 <div id="overlay"></div>
