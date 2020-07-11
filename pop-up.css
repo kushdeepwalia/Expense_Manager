@@ -5,18 +5,17 @@
 .modal{
     position: fixed;
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0);
+    /* left: 50%; */
+    transform: translate(-10%, -50%) scale(0);
     border: 1px solid black;
     border-radius: 10px;
     z-index: 10;
     transition: 200ms ease-in-out;
-    width: 500px;
-    max-width: 80%;
+    max-width: 85%;
 }
 
 .modal.active{
-    transform: translate(-50%, -50%) scale(1);
+    transform: translate(-10%, -50%) scale(1);
 }
 .modal-heading{
     padding: 10px 15px;
