@@ -23,7 +23,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgb(94, 24, 27);
+    background-color: rgb(245, 41, 61);
     border-bottom: 1px solid black;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -45,7 +45,7 @@
     display:flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(93, 24, 28);
+    background-color: rgb(245, 41, 61);
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 }
@@ -64,7 +64,7 @@
     opacity: 0.7;
     font-size: 12px;
 }
-#Username,#Password,#Amount{
+#Username,#Password,#email{
     background-color: transparent;
     border: none;
     border-bottom: 1px solid black;
@@ -82,7 +82,7 @@
     font-size: 20px;
     font-weight: bold;
     background-color: rgba(255, 255, 255);
-    color: rgb(94, 24, 27);
+    color: rgb(245, 41, 61);
     cursor: pointer;
 }
 #btn:hover{
@@ -91,7 +91,7 @@
 #overlay{
     position: fixed;
     opacity: 0;
-    top: 10vh;
+    top: 0;
     left: 0;
     right: 0;
     bottom: 0;
@@ -102,18 +102,4 @@
 #overlay.active{
     pointer-events: all;
     opacity: 1;
-}
-@media(max-width:500px){
-    .loginTable tr{
-        width: 40px;
-    }
-    #Username,#Password,#Amount{
-        background-color: transparent;
-        border: none;
-        border-bottom: 1px solid black;
-        padding-left: 5px;
-        outline:none;
-        color: white;
-        font-size: 10px;
-    }
 }

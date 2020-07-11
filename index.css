@@ -6,9 +6,19 @@
 body{
     background-color: white;
 }
+.content{
+    position: relative;
+    left: 5vw;
+    border: 7px solid;
+    border-radius: 40px;
+    right: 5vw;
+    top: 5vh;
+    bottom: 5vh;
+    width: 90vw;
+    height: 90vh;
+}
 .head{
-    background-color: #5e181b;
-    width: 100vw;
+    width: 89%;
     height: 10vh;
     position: fixed;
     z-index: 100;
@@ -23,7 +33,10 @@ body{
 .head a .logo-head{
     display: flex;
     align-items: center;
-    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
     height: inherit;
 }
 .head a .logo-head img{
@@ -48,68 +61,83 @@ body{
 #loginBtn,#registerBtn{
     background-color: transparent;
     border: none;
-    border-bottom:1px solid;
+    border-left: 2px solid rgb(245, 41, 61);
     font-size: 20px;
+    padding-left: 2px;
     cursor: pointer;
     outline: none;
 }
-li{
-    list-style-type: square;
-    padding-left: 10px;
+
+#loginBtn:hover,#registerBtn:hover{
+    color: rgb(245, 41, 61);
+    border-left: 2px solid white;
 }
-@media(max-width:768px){
+.intro{
+    position: relative;
+    top: 20vh;
+    margin-left: 10vw;
+}
+.intro p{
+    margin-left: 105px;
+}
+.intro div{
+    display: flex;
+    height: 180px;
+}
+.intro div span{
+    color: rgb(245, 41, 61);
+    font-size: 170px;
+}
+.intro div h1{
+    text-transform: capitalize;
+    font-size: 50px;
+    position: relative;
+    top: 40px;
+}
+#features{
+    position: relative;
+    top: 8vh;
+    margin-left: 105px;
+    background-color: transparent;
+    border: none;
+    color: rgb(245, 41, 61);
+    font-size: 20px;
+    padding-left: 2px;
+    cursor: pointer;
+    outline: none;
+}
+#features img{
+    width: 20px;
+    position: relative;
+    top: 3.5px;
+}
+#features:hover{
+    background-color: rgba(255, 255, 255, 0.5);
+}
+/* Mobile L */
+@media(max-width:673px){
     .head a .logo-head{
         display: flex;
+        width: 320px;
         align-items: center;
-        padding-left: 5px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left: 10px;
+        padding-right: 0px;
         height: inherit;
     }
     .head a .logo-head img{
         height: 6vh;
         border-radius: 50%;
-        margin-right: 5px;
+        margin-right: 2px;
     }
     .head a .logo-head .mainhead{
-        font-size: 35px;
+        font-size: 21px;
+        font-weight: bold;
     }
     .head .buttons{
-        margin-right: 10px;
-        width: 230px;
-        height: 50px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    #registerBtn{
-        margin-left: 20px;
-    }
-    #loginBtn,#registerBtn{
-        background-color: transparent;
-        border: none;
-        border-bottom:1px solid;
-        font-size: 24px;
-        cursor: pointer;
-        outline: none;
-    }
-}
-@media(max-width:500px){
-    .head .logo-head{
-        display: flex;
-        align-items: center;
-        padding-left: 5px;
-        height: inherit;
-    }
-    .head .logo-head img{
-        height: 6vh;
-        border-radius: 50%;
-        margin-right: 5px;
-    }
-    .head .logo-head .mainhead{
-        font-size: 20px;
-    }
-    .head .buttons{
-        margin-right: 5px;
-        width: 150px;
+        margin-right: 16px;
+        width: 180px;
         height: 40px;
         display: flex;
         align-items: center;
@@ -121,9 +149,316 @@ li{
     #loginBtn,#registerBtn{
         background-color: transparent;
         border: none;
-        border-bottom:1px solid;
-        font-size: 18px;
+        border-left: 2px solid rgb(245, 41, 61);
+        font-size: 20px;
+        padding-left: 2px;
         cursor: pointer;
         outline: none;
+    }
+    .intro{
+        position: relative;
+        top: 12vh;
+        margin-left: 6vw;
+    }
+    .intro p{
+        margin-left: 5px;
+        position: relative;
+        top: 30px;
+    }
+    .intro div{
+        margin-left: 30px;
+        display: flex;
+        height: 180px;
+    }
+    .intro div span{
+        color: rgb(245, 41, 61);
+        font-size: 170px;
+    }
+    .intro div h1{
+        text-transform: capitalize;
+        font-size: 50px;
+        position: relative;
+        top: 40px;
+    }
+    #features{
+        position: relative;
+        top: 8vh;
+        margin-left: 105px;
+        background-color: transparent;
+        border: none;
+        color: rgb(245, 41, 61);
+        font-size: 20px;
+        padding-left: 2px;
+        cursor: pointer;
+        outline: none;
+    }
+    #features img{
+        width: 20px;
+        position: relative;
+        top: 3.5px;
+    }
+    #features:hover{
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+}
+@media(max-width:425px){
+    .head a .logo-head{
+        display: flex;
+        width: 220px;
+        align-items: center;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left: 10px;
+        padding-right: 0px;
+        height: inherit;
+    }
+    .head a .logo-head img{
+        height: 6vh;
+        border-radius: 50%;
+        margin-right: 2px;
+    }
+    .head a .logo-head .mainhead{
+        font-size: 21px;
+        font-weight: bold;
+    }
+    .head .buttons{
+        margin-right: 16px;
+        width: 180px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    #registerBtn{
+        margin-left: 10px;
+    }
+    #loginBtn,#registerBtn{
+        background-color: transparent;
+        border: none;
+        border-left: 2px solid rgb(245, 41, 61);
+        font-size: 20px;
+        padding-left: 2px;
+        cursor: pointer;
+        outline: none;
+    }
+    .intro{
+        position: relative;
+        top: 12vh;
+        margin-left: 6vw;
+    }
+    .intro p{
+        margin-left: 5px;
+        position: relative;
+        top: 30px;
+        /* word-break: keep-all; */
+    }
+    .intro div{
+        margin-left: 30px;
+        display: flex;
+        height: 180px;
+    }
+    .intro div span{
+        color: rgb(245, 41, 61);
+        font-size: 170px;
+    }
+    .intro div h1{
+        text-transform: capitalize;
+        font-size: 50px;
+        position: relative;
+        top: 10px;
+    }
+    #features{
+        position: relative;
+        top: 8vh;
+        margin-left: 65px;
+        background-color: transparent;
+        border: none;
+        color: rgb(245, 41, 61);
+        font-size: 20px;
+        padding-left: 2px;
+        cursor: pointer;
+        outline: none;
+    }
+    #features img{
+        width: 20px;
+        position: relative;
+        top: 3.5px;
+    }
+    #features:hover{
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+}
+@media(max-width:375px){
+    .head a .logo-head{
+        display: flex;
+        width: 220px;
+        align-items: center;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left: 5px;
+        padding-right: 0px;
+        height: inherit;
+    }
+    .head a .logo-head img{
+        height: 6vh;
+        border-radius: 50%;
+        margin-right: 2px;
+    }
+    .head a .logo-head .mainhead{
+        font-size: 21px;
+        font-weight: bold;
+    }
+    .head .buttons{
+        margin-right: 16px;
+        width: 180px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    #registerBtn{
+        margin-left: 4px;
+    }
+    #loginBtn,#registerBtn{
+        background-color: transparent;
+        border: none;
+        border-left: 2px solid rgb(245, 41, 61);
+        font-size: 15px;
+        padding-left: 1px;
+        cursor: pointer;
+        outline: none;
+    }
+    .intro{
+        position: relative;
+        top: 12vh;
+        margin-left: 6vw;
+    }
+    .intro p{
+        margin-left: 5px;
+        position: relative;
+        top: 30px;
+        /* word-break: keep-all; */
+    }
+    .intro div{
+        margin-left: 10px;
+        display: flex;
+        height: 180px;
+    }
+    .intro div span{
+        color: rgb(245, 41, 61);
+        font-size: 170px;
+    }
+    .intro div h1{
+        text-transform: capitalize;
+        font-size: 50px;
+        position: relative;
+        top: 10px;
+    }
+    #features{
+        position: relative;
+        top: 8vh;
+        margin-left: 55px;
+        background-color: transparent;
+        border: none;
+        color: rgb(245, 41, 61);
+        font-size: 20px;
+        padding-left: 2px;
+        cursor: pointer;
+        outline: none;
+    }
+    #features img{
+        width: 20px;
+        position: relative;
+        top: 3.5px;
+    }
+    #features:hover{
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+}
+@media(max-width:325px){
+    .head a .logo-head{
+        display: flex;
+        width: 160px;
+        align-items: center;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left: 2px;
+        padding-right: 0px;
+        height: inherit;
+    }
+    .head a .logo-head img{
+        height: 5vh;
+        border-radius: 50%;
+        margin-right: 2px;
+    }
+    .head a .logo-head .mainhead{
+        font-size: 15px;
+        font-weight: bold;
+    }
+    .head .buttons{
+        margin-right: 16px;
+        width: 180px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    #registerBtn{
+        margin-left: 4px;
+    }
+    #loginBtn,#registerBtn{
+        background-color: transparent;
+        border: none;
+        border-left: 2px solid rgb(245, 41, 61);
+        font-size: 15px;
+        padding-left: 1px;
+        cursor: pointer;
+        outline: none;
+    }
+    .intro{
+        position: relative;
+        top: 12vh;
+        margin-left: 6vw;
+    }
+    .intro p{
+        margin-left: 5px;
+        position: relative;
+        top: 30px;
+        /* word-break: keep-all; */
+    }
+    .intro div{
+        margin-left: 5px;
+        display: flex;
+        height: 180px;
+    }
+    .intro div span{
+        color: rgb(245, 41, 61);
+        font-size: 170px;
+    }
+    .intro div h1{
+        text-transform: capitalize;
+        font-size: 40px;
+        position: relative;
+        top: 26px;
+    }
+    #features{
+        position: relative;
+        top: 8vh;
+        margin-left: 55px;
+        background-color: transparent;
+        border: none;
+        color: rgb(245, 41, 61);
+        font-size: 20px;
+        padding-left: 2px;
+        cursor: pointer;
+        outline: none;
+    }
+    #features img{
+        width: 20px;
+        position: relative;
+        top: 3.5px;
+    }
+    #features:hover{
+        background-color: rgba(255, 255, 255, 0.5);
     }
 }
