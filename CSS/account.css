@@ -1,0 +1,91 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.header{
+    background-color: rgb(245, 41, 61);
+    display: flex;
+    height: 70px;
+    width: 100vw;
+    justify-content: space-between;
+}
+.logo_head{
+    display: flex;
+}
+#web-logo{
+    width: 50px;
+    border-radius: 50%;
+}
+#web-image{
+    padding-left: 10px;
+    position: relative;
+    top: 10px;
+}
+#web-name{
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+    padding-left: 10px;
+    padding-right: 20px;
+}
+.wallet-dropdown-div{
+    width: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+}
+#wallet-dropdown{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    width: 150px;
+    height: 30px;
+}
+.logout{
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#logout{
+    background-color: transparent;
+    width: 100px;
+    font-size: 20px;
+    height: 30px;
+    border: none;
+    border-left: 2px solid white;
+    outline: none;
+    cursor: pointer;
+}
+#logout:hover{
+    border-left: 2px solid black;
+    color: white;
+}
+.sixoptions{
+    display: flex;
+    width: 100vw;
+    justify-content: center;
+    height: 38.8vh;
+    flex-direction: column;
+}
+.upperthree,.lowerthree{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    height: inherit;
+}
+.option{
+    width: 20vw;
+    height: 17.5vh;
+    margin: 5px 35px 5px 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(245, 41, 61);
+}
+.option:hover{
+    box-shadow: 4px 4px 4px black;
+    cursor: pointer;
+}

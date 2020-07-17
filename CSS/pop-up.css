@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@500&family=Hind:wght@300&family=Muli&family=Oxygen&family=Roboto&display=swap');
+*,*::after,*::before{
+    box-sizing: border-box;
+}
+
+.modal{
+    position: fixed;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    border: 2px solid black;
+    border-radius: 10px;
+    z-index: 10;
+    transition: 200ms ease-in-out;
+    max-width: 85%;
+    background-color: white;
+    font-family: 'Muli', sans-serif;
+}
+.modal-heading{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    float: right;
+    margin-bottom: 15px;
+}
+.modal.active{
+    transform: translate(-50%, -50%) scale(1);
+}
+.modal-heading .title{
+    font-size: 1.8rem;
+    text-align: center;
+    width: 90%;
+    color: rgb(85, 84, 84);;
+    padding-left: 30px;
+    font-weight: bold;
+}
+.modal .close-button{
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+.modal-body{
+    padding: 10px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.modal-body .loginTable tr{
+    line-height: 50px;
+}
+
+.modal-body .loginTable tr .box{
+    padding-left: 5px;
+    padding-bottom: 10px;
+    display: flex;
+    color: black;
+    align-items: center;
+    justify-content: center;
+}
+::placeholder{
+    color: rgb(85, 84, 84);
+    opacity: 0.7;
+    font-size: 12px;
+    font-family: 'Muli', sans-serif;
+}
+#Username,#Password,#email,#wallet{
+    background-color: transparent;
+    border: none;
+    border: 1px solid rgb(85, 84, 84);
+    padding-left: 5px;
+    height: 40px;
+    width: 270px;
+    outline:none;
+    color: black;
+    font-size: 15px;
+}
+#btn{
+    outline: none;
+    border: none;
+    background-color: transparent;
+    padding: 10px;
+    height: 40px;
+    width: 290px;
+    border-radius: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    background-color: rgb(245, 41, 61);
+    cursor: pointer;
+}
+#btn:hover{
+    box-shadow: 4px 4px 4px rgba(0,0,0,0.6);
+}
+#overlay{
+    position: fixed;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    pointer-events: none;
+}
+
+#overlay.active{
+    pointer-events: all;
+    opacity: 1;
+}
+@media(max-width:425px){
+    .modal
+    {   
+        left: 50%;
+    }
+}
+@media(max-width:325px){
+    .modal
+    {   
+        left: 50%;
+        max-width: 80%;
+    }
+    #Username,#Password,#email{
+        width: 230px;
+    }
+    #btn{
+        width: 240px;
+    }
+}

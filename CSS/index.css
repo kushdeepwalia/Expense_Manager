@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Enriqueta:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@500&family=Hind:wght@300&family=Muli&family=Oxygen&family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@500&family=Hind:wght@300&family=Muli&family=Oxygen&family=Roboto&display=swap');
 /* 
     font-family: 'Bree Serif', serif;
     font-family: 'Enriqueta', serif;
@@ -19,7 +20,7 @@ body{
     background-color: white;
 }
 .content{
-    position: relative;
+    /* position: relative; */
     left: 5vw;
     border: 7px solid;
     border-radius: 40px;
@@ -27,6 +28,7 @@ body{
     top: 5vh;
     bottom: 5vh;
     width: 90vw;
+    position: fixed;
     height: 90vh;
 }
 .head{
@@ -358,10 +360,9 @@ body{
         margin-left: 5px;
         position: relative;
         top: 30px;
-        /* word-break: keep-all; */
     }
     .intro div{
-        margin-left: 10px;
+        margin-left: 0px;
         display: flex;
         height: 180px;
     }
@@ -371,9 +372,9 @@ body{
     }
     .intro div h1{
         text-transform: capitalize;
-        font-size: 50px;
+        font-size: 37px;
         position: relative;
-        top: 10px;
+        top: 40px;
     }
     #features{
         position: relative;
@@ -445,22 +446,21 @@ body{
         margin-left: 5px;
         position: relative;
         top: 30px;
-        /* word-break: keep-all; */
     }
     .intro div{
-        margin-left: 5px;
+        margin-left: 2px;
         display: flex;
         height: 180px;
     }
     .intro div span{
         color: rgb(245, 41, 61);
-        font-size: 170px;
+        font-size: 160px;
     }
     .intro div h1{
         text-transform: capitalize;
-        font-size: 40px;
+        font-size: 30px;
         position: relative;
-        top: 26px;
+        top: 35px;
     }
     #features{
         position: relative;

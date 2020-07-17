@@ -6,6 +6,7 @@
 .modal.slider-frame{
     overflow: hidden;
     height: 90vh;
+    left: 50%;
     background-color: rgb(136, 0, 27);
     width: 100vw;
     z-index: 100;
