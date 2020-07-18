@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
     <link rel="stylesheet" href="CSS/index.css">
     <link rel="stylesheet" href="CSS/slideshow.css">
 </head>
+
 <body>
     <div class="loader">
         <div class="loading">
@@ -18,10 +20,12 @@
     </div>
     <div class="content hide">
         <header class="head">
-            <a href="index.php"><div class="logo-head">
-                <img src="Images/main logo.png" alt="main-logo">
-                <span class="mainhead">Expense Manager</span>
-            </div></a>
+            <a href="index.php">
+                <div class="logo-head">
+                    <img src="Images/main logo.png" alt="main-logo">
+                    <span class="mainhead">Expense Manager</span>
+                </div>
+            </a>
             <div class="buttons">
                 <button data-modal-target="#login" id="loginBtn">Login</button>
                 <div class="modal" id="login">
@@ -33,10 +37,12 @@
                         <form action="Php/login.php" method="post" autocomplete="off">
                             <table class="loginTable">
                                 <tr>
-                                    <td class="box"><input type="text" name="Username" id="Username" placeholder="Enter your Username"></td>
+                                    <td class="box"><input type="text" name="Username" id="Username"
+                                            placeholder="Enter your Username"></td>
                                 </tr>
                                 <tr>
-                                    <td class="box"><input type="password" name="Password" id="Password" placeholder="Enter your Password"></td>
+                                    <td class="box"><input type="password" name="Password" id="Password"
+                                            placeholder="Enter your Password"></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2" align="center"><input type="submit" value="Login" id="btn"></td>
@@ -55,22 +61,28 @@
                         <form action="Php/register.php" method="post" autocomplete="off">
                             <table class="loginTable">
                                 <tr>
-                                    <td class="box"><input type="text" name="Username" id="Username" placeholder="User Name"></td>
+                                    <td class="box"><input type="text" name="Username" id="Username"
+                                            placeholder="User Name"></td>
                                 </tr>
                                 <tr>
-                                    <td class="box"><input type="email" name="email" id="email" placeholder="Email Address"></td>
+                                    <td class="box"><input type="email" name="email" id="email"
+                                            placeholder="Email Address"></td>
                                 </tr>
                                 <tr>
-                                    <td class="box"><input type="text" name="wallet" id="wallet" placeholder="Enter wallet name"></td>
+                                    <td class="box"><input type="text" name="wallet" id="wallet"
+                                            placeholder="Enter wallet name"></td>
                                 </tr>
                                 <tr>
-                                    <td class="box"><input type="password" name="Password" id="Password" placeholder="Enter Password"></td>
+                                    <td class="box"><input type="password" name="Password" id="Password"
+                                            placeholder="Enter Password"></td>
                                 </tr>
                                 <tr>
-                                    <td class="box"><input type="password" name="ConPassword" id="Password" placeholder="Re-Enter Password"></td>
+                                    <td class="box"><input type="password" name="ConPassword" id="Password"
+                                            placeholder="Re-Enter Password"></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2" align="center"><input type="submit" value="Register" name="register" id="btn"></td>
+                                    <td colspan="2" align="center"><input type="submit" value="Register" name="register"
+                                            id="btn"></td>
                                 </tr>
                             </table>
                         </form>
@@ -85,9 +97,11 @@
                 <h1>track your <br>expense</h1>
             </div>
             <p>
-                A complete solution to track your all the expenses bared by your <br> pocket and manage your personal finance.
+                A complete solution to track your all the expenses bared by your <br> pocket and manage your personal
+                finance.
             </p>
-            <button data-modal-target="#slider-frame" id="features">Features <img src="Images/right arrow.png" alt="arrow"></button>
+            <button data-modal-target="#slider-frame" id="features">Features <img src="Images/right arrow.png"
+                    alt="arrow"></button>
             <div class="slider-frame modal" id="slider-frame">
                 <div class="slide-images">
                     <div class="img-container">
@@ -109,8 +123,9 @@
     <script src="Js/pop-up.js"></script>
     <script src="Js/loader.js"></script>
 </body>
+
 </html>
- <?php
+<?php
     if(isset($_GET['message']))
     {
         $name_exist=$_GET['message'];

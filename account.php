@@ -31,114 +31,114 @@
         $total_percent_save = Array();
         $total_percent_save[0][0]=( $total_save[0][0] / $total_income[0][0]) *100;
         // print_r($total_percent_save);
+        $zero=0;
     }
 ?>
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Hey <?php echo$username; ?></title>
-        <link rel="stylesheet" href="CSS/pop-up.css">
-        <link rel="stylesheet" href="CSS/loading.css">
-        <link rel="stylesheet" href="CSS/account.css">
-        <link rel="stylesheet" href="CSS/custom_scroll.css">
-        <link rel="stylesheet" href="CSS/progresscircle.css">
-        <style>
-            .card:nth-child(1) svg circle:nth-child(2)
-            {
-                stroke-dashoffset: calc(440 - (440 * <?php echo $total_percent_expense[0][0]; ?>) /100);
-                stroke: red;
-            }
-            .card:nth-child(2) svg circle:nth-child(2)
-            {
-                stroke-dashoffset: calc(-1 * (440 * <?php echo $total_percent_expense[0][0]; ?>) /100);
-                stroke: blue;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="loader">
-            <div class="loading">
-                <span>Loading...</span>
-            </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hey <?php echo$username; ?></title>
+    <link rel="stylesheet" href="CSS/pop-up.css">
+    <link rel="stylesheet" href="CSS/loading.css">
+    <link rel="stylesheet" href="CSS/account.css">
+    <link rel="stylesheet" href="CSS/custom_scroll.css">
+    <link rel="stylesheet" href="CSS/progresscircle.css">
+    <style>
+        .card:nth-child(1) svg circle:nth-child(2) {
+            stroke-dashoffset: calc(440 - (440 * <?php if($total_percent_expense[0][0]== Null) echo$zero; else echo $total_percent_expense[0][0]; ?>) /100);
+            stroke: red;
+        }
+
+        .card:nth-child(2) svg circle:nth-child(2) {
+            stroke-dashoffset: calc(-1 * (440 * <?php if($total_percent_expense[0][0]== Null) echo$zero; else echo $total_percent_expense[0][0]; ?>) /100);
+            stroke: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div class="loader">
+        <div class="loading">
+            <span>Loading...</span>
         </div>
-        <div class="content-box">
-            <header class="header">
-                <div class="logo_head">
-                    <span id="web-image">
-                        <img src="Images/main logo.png" alt="Wallet" id="web-logo">
-                    </span>
-                    <span id="web-name">
-                        Expense Manager
-                    </span>
-                </div>
-                <div class="wallet-dropdown-div">
-                    <form method="POST">
-                        <select name="wallet" id="wallet-dropdown">
-                            <?php
+    </div> -->
+    <div class="content-box">
+        <header class="header">
+            <div class="logo_head">
+                <span id="web-image">
+                    <img src="Images/main logo.png" alt="Wallet" id="web-logo">
+                </span>
+                <span id="web-name">
+                    Expense Manager
+                </span>
+            </div>
+            <div class="wallet-dropdown-div">
+                <form method="POST">
+                    <select name="wallet" id="wallet-dropdown">
+                        <?php
                                 $result = mysqli_query($con,"show tables");
                                 while($table = mysqli_fetch_array($result))
                                 {
                             ?>
-                                <option value="<?php echo $table[0]; ?>"><?php echo$table[0]; ?></option>
-                            <?php
+                        <option value="<?php echo $table[0]; ?>"><?php echo$table[0]; ?></option>
+                        <?php
                                 }
                             ?>
-                        </select>
-                        <input type="submit" value="Submit" name="submit-wallet">
-                    </form>
-                </div>
-                <div class="logout">
-                    <a href="index.php"><button id="logout">Logout</button></a>
-                </div>
-            </header>
-            <div class="containerbody">
-                <div class="container">
-                    <div class="card">
-                        <div class="box">
-                            <div class="percent">
-                                <svg>
-                                    <circle cx="70" cy="70" r="70"></circle>
-                                    <circle cx="70" cy="70" r="70"></circle>
-                                </svg>
-                                <div class="number">
-                                    <h2><?php echo $total_percent_expense[0][0]; ?><span>%</span></h2>
-                                </div>
-                            </div>
-                            <div class="text">Expenses <br><?php echo $total_expense[0][0]; ?> </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="box">
-                            <div class="percent">
-                                <svg>
-                                    <circle cx="70" cy="70" r="70"></circle>
-                                    <circle cx="70" cy="70" r="70"></circle>
-                                </svg>
-                                <div class="number">
-                                    <h2><?php echo $total_percent_save[0][0]; ?><span>%</span></h2>
-                                </div>
-                            </div>
-                            <div class="text">Savings <br> <?php echo $total_save[0][0]; ?></div>
-                        </div>
-                    </div>
-                </div>
+                    </select>
+                    <input type="submit" value="Submit" id="submit-wallet" name="submit-wallet">
+                </form>
             </div>
-            <div class="sixoptions">
-                <div class="upperthree">
-                    <div class="first option">Income</div>
-                    <div class="second option">Expense</div>
-                    <div class="third option"> Records</div>
+            <div class="logout">
+                <a href="index.php"><button id="logout">Logout</button></a>
+            </div>
+        </header>
+        <div class="containerbody">
+            <div class="container">
+                <div class="card">
+                    <div class="box">
+                        <div class="percent">
+                            <svg>
+                                <circle cx="70" cy="70" r="70"></circle>
+                                <circle cx="70" cy="70" r="70"></circle>
+                            </svg>
+                            <div class="number">
+                                <h2><?php echo $total_percent_expense[0][0]; ?><span>%</span></h2>
+                            </div>
+                        </div>
+                        <div class="text">Expenses <br><?php echo $total_expense[0][0]; ?> </div>
+                    </div>
                 </div>
-                <div class="lowerthree">
-                    <div class="fourth option">Reports</div>
-                    <div class="fifth option">Settings</div>
-                    <div class="sixth option">Share</div>
+                <div class="card">
+                    <div class="box">
+                        <div class="percent">
+                            <svg>
+                                <circle cx="70" cy="70" r="70"></circle>
+                                <circle cx="70" cy="70" r="70"></circle>
+                            </svg>
+                            <div class="number">
+                                <h2><?php echo $total_percent_save[0][0]; ?><span>%</span></h2>
+                            </div>
+                        </div>
+                        <div class="text">Savings <br> <?php echo $total_save[0][0]; ?></div>
+                    </div>
                 </div>
             </div>
         </div>
-        <script src="Js/pop-up.js"></script>
-        <script src="Js/loader.js"></script>
-    </body>
+        <nav class="nav">
+            <ul>
+                <li>Add Income</li>
+                <li>Add Expense</li>
+                <li>All Transcations</li>
+                <li>Reports</li>
+                <li>Profile Settings</li>
+                <li>Download Reports</li>
+            </ul>
+        </nav>
+    </div>
+    <script src="Js/pop-up.js"></script>
+    <script src="Js/loader.js"></script>
+</body>
+
 </html>

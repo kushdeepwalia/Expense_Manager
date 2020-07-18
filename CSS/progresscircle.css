@@ -1,24 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Enriqueta:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@500&family=Hind:wght@300&family=Muli&family=Oxygen&family=Roboto&display=swap');
 *{
     margin: 0;
     padding: 0;
 }
 .containerbody{
-    width: 100vw;
-    height: 50vh;
+    width: 30vw;
+    height: 89vh;
+    float: left;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: rgba(192, 180, 180, 0.384);
 }
 .container{
     position: relative;
     width: inherit;
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
 }
 .card{
     position: relative;
     width: 250px;
-    background-image: linear-gradient(0deg,#1b1b1b,#222,#1b1b1b);
     display: flex;
     justify-content: center;
     align-items: center;
