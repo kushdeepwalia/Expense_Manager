@@ -1,6 +1,6 @@
 <?php
     $con=mysqli_connect('localhost:3306','id14247551_kush','9354752373_Kush');
-    mysqli_select_db($con,'expense_clients') or die("Could connect to the database");
+    mysqli_select_db($con,'id14247551_expense_clients') or die("Could connect to the database");
     $username=$_POST['Username'];
     $password=$_POST['Password'];
     $query=mysqli_query($con,"SELECT * FROM `All_Users` where `Username`='$username' and `Password`='$password'");
