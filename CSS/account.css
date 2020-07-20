@@ -32,29 +32,18 @@
     font-family: 'Enriqueta', serif;
     padding-right: 20px;
 }
-.wallet-dropdown-div{
-    width: 270px;
+.wallet-name{
+    width: 24vw;
+    height: 11vh;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 25px;
+    text-transform: capitalize;
 }
-#submit-wallet{
-    background-color: transparent;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    width: 100px;
-    font-family: 'Muli', sans-serif;
-    font-size: 20px;
-    height: 30px;
-}
-#wallet-dropdown{
-    background-color: transparent;
-    border: none;
-    outline: none;
-    width: 150px;
-    height: 30px;
+#wallet-name{
+    color: rgb(245, 41, 61);
+    padding-right: 5px;
 }
 .logout{
     width: 200px;
@@ -78,11 +67,264 @@
     border-left: 2px solid black;
     color: rgb(245, 41, 61);
 }
-.nav{
-    background-color: red;
-    width: 69.2vw;
+.content{
+    width: 100vw;
+    height: 89vh;
+}
+.main-content{
+    width: 70vw;
+    height: 89vh;
     float: right;
 }
-.nav ul li{
+.nav{
+    position: relative;
+    top: 5px;
+    height: 30px;
+    width: 70vw;
+    background-color: rgb(245, 41, 61);
+    box-shadow: 4px 4px 4px grey;
+}
+.nav ul{
+    display: flex;
+    justify-content: space-between;
+}
+.nav ul a{
+    text-decoration: none;
+    width: 100%;
+    font-family: 'Muli', sans-serif;
+    background-color: white;
+    color: rgb(245, 41, 61);
+    cursor: pointer;
+}
+.nav ul a:hover{
+    color: black;
+}
+.nav ul a li{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     list-style-type: none;
+    border-right: 1px solid black;
+    font-size: 21px;
+    font-weight: bold;
+    height: 30px;
+}
+.br-1{
+    border-right: none !important;
+}
+.active{
+    display: block;
+}
+.inactive{
+    display: none;
+}
+.add-income{
+    width: 70vw;
+    height: 84vh;
+}
+.income-left{
+    width: 25vw;
+    float: left;
+    height: 84vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Enriqueta';
+    font-size: 30px;
+}
+.income-right{
+    width: 45vw;
+    float: right;
+    height: 84vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.add-expense{
+    width: 70vw;
+    height: 84vh;
+}
+.expense-left{
+    width: 25vw;
+    float: left;
+    height: 84vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Enriqueta';
+    font-size: 30px;
+}
+.expense-right{
+    width: 45vw;
+    float: right;
+    height: 84vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#income-symbol{
+    width: 200px;
+}
+#expense-symbol{
+    width: 200px;
+}
+.form{
+    background-color: royalblue;
+    width: 30vw;
+    height: 60vh;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 40px;
+}
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button{
+    display: none;
+}
+.field{
+    font-family: 'Muli',sans-serif;
+    font-size: 19px;
+}
+#income-amount,#income-sub-category,#income-date,#income-desc,#income-mode{
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid black;
+    outline: none;
+    width: 200px;
+    position: relative;
+}
+#income-amount{
+    left: 33px;
+}
+#income-sub-category{
+    left: 45px;
+}
+#income-date{
+    left: 62px;
+}
+#income-desc{
+    left:6px;
+}
+#income-mode{
+    left: 58px;
+}
+#submit-income,#submit-expense{
+    position: relative;
+    top: 10px;
+    left: 5px;
+    background-color: rgb(245, 41, 61);
+    border: none;
+    cursor: pointer;
+    outline: none;
+    width: 250px;
+    height: 30px;
+    border-radius: 20px;
+}
+#submit-income:hover,#submit-expense:hover{
+    box-shadow: 4px 4px 4px grey;
+}
+#expense-amount,#expense-sub-category,#expense-date,#expense-desc,#expense-mode{
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid black;
+    outline: none;
+    width: 200px;
+    position: relative;
+}
+#expense-amount{
+    left: 33px;
+}
+#expense-sub-category{
+    left: 45px;
+}
+#expense-date{
+    left: 62px;
+}
+#expense-desc{
+    left:6px;
+}
+#expense-mode{
+    left: 58px;
+}
+#submit-income{
+    position: relative;
+    top: 10px;
+    left: 5px;
+    background-color: rgb(245, 41, 61);
+    border: none;
+    cursor: pointer;
+    outline: none;
+    width: 250px;
+    height: 30px;
+    border-radius: 20px;
+}
+#submit-income:hover{
+    box-shadow: 4px 4px 4px grey;
+}
+.all-transac{
+    width: 70vw;
+    height: 84vh;
+    padding-top: 20px;
+    padding-left: 10px;
+}
+.categoryselect{
+    /* background-color: rgb(245, 41, 61); */
+    height: 7vh;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    font-family: 'Muli',sans-serif;
+}
+.categoryselect span{
+    font-size: 25px;
+    margin-right:10px;
+}
+#transac-category,#cat-submit{
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    width:50px;
+    height: 30px;
+    font-family: 'Muli',sans-serif;
+}
+#transac-category{
+    margin-right: 10px;
+    width: 100px;
+    font-size: 20px;
+}
+#cat-submit{
+    background-color: rgb(245, 41, 61);
+    width: 100px;
+    height: 35px;
+    border-radius: 30px;
+    font-size: 20px;
+    cursor: pointer;
+}
+#cat-submit:hover{
+    box-shadow: 4px 4px 4px grey;
+}
+.transac-table{
+    width: 68.5vw;
+    height: 70vh;
+}
+.table{
+    background-color: rgb(231 226 226);
+    width: 68.5vw;
+}
+.table tr th:hover{
+    background-color: white;
+    color: blueviolet;
+}
+.table tr th{
+    font-size: 20px;
+    padding: 10px;
+    background-color: blueviolet;
+    color: white;
+}
+.table tr td{
+    text-align: center;
 }

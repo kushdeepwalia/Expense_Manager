@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="CSS/index.css">
     <link rel="stylesheet" href="CSS/slideshow.css">
 </head>
-
+ 
 <body>
     <div class="loader">
         <div class="loading">
