@@ -5,7 +5,7 @@
     $wallet=$_SESSION['wallet'];
     $filename=$wallet;
     $filename.=".pdf";
-    $con=mysqli_connect('localhost:3306','id14247551_kush','9354752373_Kush');
+    $con=mysqli_connect('localhost','root','');
     mysqli_select_db($con,$username) or die("Could connect to the database");
     $query=mysqli_query($con,"SELECT * FROM `$wallet`");
     $query1=mysqli_query($con,"SELECT * FROM `$wallet` WHERE `Category`='Income'");

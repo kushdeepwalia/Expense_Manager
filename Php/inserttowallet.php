@@ -2,7 +2,7 @@
     session_start();
     $username=$_SESSION['username'];
     $wallet=$_SESSION['wallet'];
-    $con=mysqli_connect('localhost:3306','kush','');
+    $con=mysqli_connect('localhost','root','');
     mysqli_select_db($con,$username) or die("Could connect to the database");
     if(isset($_POST['submit-income']))
     {

@@ -1,8 +1,8 @@
 <?php
     session_start();
     $username=$_SESSION['username'];
-    $con=mysqli_connect('localhost:3306','id14247551_kush','9354752373_Kush');
-    mysqli_select_db($con,$username) or die("Could connect to the database");   
+    $con=mysqli_connect('localhost','root','');
+    mysqli_select_db($con,$username) or die("Could connect to the database"); 
     $result = mysqli_query($con,"show tables");
     $table = mysqli_fetch_array($result);
     $wallet=$table[0];
