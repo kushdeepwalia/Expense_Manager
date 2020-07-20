@@ -297,7 +297,7 @@
                         </div>
                     </div>
                 </section>
-                <section id="all-transac" class="all-transac inactive">
+                <section id="all-transac" class="all-transac active">
                     <div class="categoryselect">
                         <form method="post">
                             <span>Category: </span>
@@ -358,7 +358,7 @@
                         </table>
                     </div>
                 </section>
-                <section id="reports" class="reports active" style="margin-top:20px;margin-left:20px;font-size:100px;">
+                <section id="reports" class="reports inactive">
                     <form action="Php/createpdf.php" method="post">
                         <input type="submit" value="View Online" name="view-online">
                         <input type="submit" value="Download" name="download">
