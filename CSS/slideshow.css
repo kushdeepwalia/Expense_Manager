@@ -5,28 +5,28 @@
 }
 .modal.slider-frame{
     overflow: hidden;
-    height: 90vh;
+    height: 80vh;
     left: 50%;
-    background-color: rgb(136, 0, 27);
-    width: 100vw;
+    background-color: red;
+    width: 70vw;
     z-index: 100;
 }
 
 @keyframes slide_animation{
      0%{right: 0vw;}
     10%{right: 0vw;}
-    20%{right: 79vw;}
-    30%{right: 79vw;}
-    40%{right: 158vw;}
-    50%{right: 158vw;}
-    60%{right: 158vw;}
-    70%{right: 237vw;}
-    80%{right: 237vw;}
-    90%{right: 237vw;}
+    20%{right: 70vw;}
+    30%{right: 70vw;}
+    40%{right: 140vw;}
+    50%{right: 140vw;}
+    60%{right: 140vw;}
+    70%{right: 210vw;}
+    80%{right: 210vw;}
+    90%{right: 210vw;}
    100%{right: 0vw;}
 }
 .slide-images{
-    width: 316vw;
+    width: 280vw;
     height: inherit;
     position: relative;
     animation: slide_animation;
@@ -37,24 +37,22 @@
     padding-left: 0;
 }
 .img-container{
-    height: 50vh;
-    width: 80vw;
+    height: 80vh;
+    width: 70vw;
     position: relative;
     float: left;
     padding-left: 0;
 }
 .img-container img{
     position: relative;
-    top: 5vh;
     padding-left: 0;
-    width: 79vw;
-    height: 90vh;
+    width: 70vw;
+    height: 80vh;
 }
 @media(max-width:673px){
     .modal.slider-frame{
         overflow: hidden;
         height: 80vh;
-        background-color: rgb(136, 0, 27);
         width: 100vw;
         z-index: 100;
     }
@@ -87,7 +85,6 @@
     .modal.slider-frame{
         overflow: hidden;
         height: 60vh;
-        background-color: rgb(136, 0, 27);
         width: 100vw;
         z-index: 100;
     }
@@ -123,7 +120,6 @@
     .modal.slider-frame{
         overflow: hidden;
         height: 60vh;
-        background-color: rgb(136, 0, 27);
         width: 100vw;
         z-index: 100;
     }
