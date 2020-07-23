@@ -1,14 +1,23 @@
 <?php
     session_start();
     $username=$_SESSION['username'];
+
+    $conn=mysqli_connect('localhost','root','');
+    mysqli_select_db($conn,'expense_clients') or die("Could connect to the database"); 
+    $profile_query=mysqli_query($conn,"SELECT * FROM `all_users` WHERE `Username`='$username'");
+    $profile_result=mysqli_fetch_array($profile_query);
+    mysqli_close($conn);
+
     $con=mysqli_connect('localhost','root','');
     mysqli_select_db($con,$username) or die("Could connect to the database"); 
     $result = mysqli_query($con,"show tables");
     $table = mysqli_fetch_array($result);
     $wallet=$table[0];
+
     $_SESSION['wallet']=$wallet;
     $query=mysqli_query($con,"SELECT * FROM `$wallet`");
     if(mysqli_num_rows($query)!=0)
+    
     {
         $total_income = Array();
         $query_income=mysqli_query($con,"SELECT * FROM `$wallet` Where `Category`='Income'");
@@ -62,12 +71,12 @@
     <style>
         .card:nth-child(1) svg circle:nth-child(2) {
             stroke-dashoffset: calc(440 - (440 * <?php echo$zero[0]; ?>) /100);
-            stroke: red;
+            stroke: rgb(245,41,61);
         }
-
+        
         .card:nth-child(2) svg circle:nth-child(2) {
             stroke-dashoffset: calc(-1 * (440 * <?php echo$zero[0]; ?>) /100);
-                stroke: blue;
+            stroke: black;
         }
     </style>
     <meta charset="UTF-8">
@@ -118,7 +127,7 @@
                                     <h2><?php echo$zero[0]; ?><span>%</span></h2>
                                 </div>
                             </div>
-                            <div class="text">Expenses <br><?php echo$zero[2]; ?> </div>
+                            <div class="text">Expenses <br><span><?php echo$zero[2]; ?></span> </div>
                         </div>
                     </div>
                     <div class="card">
@@ -132,7 +141,7 @@
                                     <h2><?php echo $zero[1]; ?><span>%</span></h2>
                                 </div>
                             </div>
-                            <div class="text">Savings <br> <?php echo$zero[3]; ?></div>
+                            <div class="text">Savings <br> <span><?php echo$zero[3]; ?></span></div>
                         </div>
                     </div>
                 </div>
@@ -173,6 +182,15 @@
                                                 id="income-amount">
                                         </td>
                                     </tr>
+                                    <!-- <?php
+                                        // $a=$_SESSION['color'];
+                                        // if(strcmp("none",$a)==0)
+                                        // {
+                                        //     echo"<span class='no-color'>Select a Valid Category</span>";
+                                        //     $_SESSION['color']="";
+                                        //     session_abort();
+                                        // }
+                                    ?> -->
                                     <tr>
                                         <td>
                                             <span class="field">Source: </span>
@@ -225,7 +243,7 @@
                     <div class="expense-left">
                         <img src="Images/expense-symbol.png" alt="expense-symbol-image" id="expense-symbol">
                         <br>
-                        <span>Add Income</span>
+                        <span>Add expense</span>
                     </div>
                     <div class="expense-right">
                         <div class="form">
@@ -319,8 +337,7 @@
                                 <th>Date</th>
                                 <th>Description</th>
                                 <th>Mode</th>
-                            </tr>
-                            
+                            </tr>                                                  
                             <?php
                                 if(isset($_POST['cat-submit']))
                                 {
@@ -359,14 +376,114 @@
                     </div>
                 </section>
                 <section id="reports" class="reports inactive">
-                    <form action="Php/createpdf.php" method="post">
-                        <input type="submit" value="View Online" name="view-online">
-                        <input type="submit" value="Download" name="download">
-                    </form>
+                    <div class="report-left">
+                        <img src="Images/report-symbol.png" alt="reports-image" id="report-symbol">
+                        <br>
+                        <span>Reports</span>
+                    </div>
+                    <div class="report-right">
+                        <div class="dates">
+                            <span class="date">Date Wise</span>
+                            <input type="date" name="date" id="dates">
+                        </div>
+                        <form action="Php/createpdf.php" method="post">
+                            <input type="submit" value="View Online" id="date-view-online" name="date-view-online" formtarget="_blank">
+                            <input type="submit" value="Download"  id="date-download" name="date-download" formtarget="_blank">
+                        </form>
+                        <div class="months">
+                            <span class="month">Month Wise</span>
+                            <select name="month" id="months">
+                                <option value="none">--select--</option>
+                                <option value="January">January</option>
+                                <option value="February">February</option>
+                                <option value="March">March</option>
+                                <option value="April">April</option>
+                                <option value="May">May</option>
+                                <option value="June">June</option>
+                                <option value="July">July</option>
+                                <option value="August">August</option>
+                                <option value="September">September</option>
+                                <option value="October">October</option>
+                                <option value="November">November</option>
+                                <option value="December">December</option>
+                            </select>
+                        </div>
+                        <form action="Php/createpdf.php" method="post">
+                            <input type="submit" value="View Online" name="month-view-online" id="month-view-online" formtarget="_blank">
+                            <input type="submit" value="Download" name="month-download" id="month-download" formtarget="_blank">
+                        </form>
+                    </div>
                     
                 </section>
                 <section id="pro" class="pro inactive">
-                    e
+                    <div class="pro-left">
+                        <img src="Images/profile-symbol.png" alt="profile-symbol-image" id="profile-symbol">
+                        <br>
+                        <span>Profile Settings</span>
+                    </div>
+                    <div class="pro-right">
+                        <div class="form">
+                            <table align="center">
+                                <tr>
+                                    <td>
+                                        <span class="field">Username: </span>
+                                        <input type="text" value="<?php echo$profile_result[1] ?>" id="User" readonly>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="field">Password: </span>
+                                        <input type="text" id="Pass" value="<?php echo$profile_result[2] ?>" readonly>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="field">Email: </span>
+                                        <input type="email" value="<?php echo$profile_result[3] ?>" id="mail" readonly>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span class="field">Wallet Name: </span><input type="text" value="<?php echo$profile_result[4] ?>" id="Wallet_name" readonly>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="center">
+                                        <button id="Btn" data-modal-target="#Update">Update</button>
+                                        <div class="modal" id="Update">
+                                            <div class="modal-body">
+                                                <div class="modal-heading">
+                                                    <div class="title">Update</div>
+                                                    <button data-close-button class="close-button">&times;</button>
+                                                </div>
+                                                <form action="Php/updateProfile.php" method="POST"  autocomplete="off">
+                                                    <table class="loginTable">
+                                                        <tr>
+                                                            <td class="box"><input type="text" name="User" id="Username" placeholder="<?php echo$profile_result[1] ?>"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="box"><input type="email" name="email-id" id="email" placeholder="<?php echo$profile_result[3] ?>"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="box"><input type="text" name="wallet-name" id="wallet" placeholder="<?php echo$profile_result[4] ?>"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="box"><input type="password" name="Pass" id="Password" placeholder="<?php echo$profile_result[2] ?>"></td>
+                                                        </tr>
+                                                        
+                                                        <tr>
+                                                            <td colspan="2" align="center"><input type="submit" value="Update" name="update" id="btn"></td>
+                                                        </tr>
+                                                    </table>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <div id="overlay"></div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
                 </section>
             </div>
         </div>
@@ -375,7 +492,6 @@
     <script src="Js/account-nav.js"></script>
     <script src="Js/loader.js"></script>
 </body>
-
 </html>
 <?php
     if(isset($_GET['income-added']))
@@ -384,10 +500,12 @@
         if(strcmp("Yes",$income_added))
         {
             echo"<script>alert('Income Report Added to Your Wallet');</script>";
+            $_GET['income-added']="";
         }
         else if(strcmp("No",$income_added))
         {
             echo"<script>alert('Income Report <strong>NOT</strong> Added to Your Wallet');</script>";
+            $_GET['income-added']="";
         }
     }
     if(isset($_GET['expense-added']))
@@ -396,10 +514,12 @@
         if(strcmp("Yes",$expense_added))
         {
             echo"<script>alert('Expense Report Added to Your Wallet');</script>";
+            $_GET['expense-added']="";
         }
         else if(strcmp("No",$expense_added))
         {
             echo"<script>alert('Expense Report <strong>NOT</strong> Added to Your Wallet');</script>";
+            $_GET['expense-added']="";
         }
     }
 ?>

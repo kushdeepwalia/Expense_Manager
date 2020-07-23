@@ -3,19 +3,25 @@
     session_start();
     $username=$_SESSION['username'];
     $wallet=$_SESSION['wallet'];
+
     $filename=$wallet;
     $filename.=".pdf";
+
     $con=mysqli_connect('localhost','root','');
     mysqli_select_db($con,$username) or die("Could connect to the database");
+
     $query=mysqli_query($con,"SELECT * FROM `$wallet`");
+
     $query1=mysqli_query($con,"SELECT * FROM `$wallet` WHERE `Category`='Income'");
-    $query2=mysqli_query($con,"SELECT * FROM `$wallet` WHERE `Category`='Expense'");
     $in_tot=mysqli_query($con,"SELECT Sum(Amount) FROM `$wallet` WHERE `Category`='Income'");
     $in_result=mysqli_fetch_array($in_tot);
     $in_tot_sub=mysqli_query($con,"SELECT `Sub Category`,Sum(Amount) FROM `$wallet` WHERE `Category`='Income' GROUP BY `Sub Category`");
+
+    $query2=mysqli_query($con,"SELECT * FROM `$wallet` WHERE `Category`='Expense'");
     $exp_tot=mysqli_query($con,"SELECT Sum(Amount) FROM `$wallet` WHERE `Category`='Expense'");
     $exp_result=mysqli_fetch_array($exp_tot);
     $exp_tot_sub=mysqli_query($con,"SELECT `Sub Category`,Sum(Amount) FROM `$wallet` WHERE `Category`='Expense' GROUP BY `Sub Category`");
+
     $pdf=new PDF_SECTOR();
     $pdf->AddPage();
     $pdf->SetFont("Arial","B","16");
@@ -45,6 +51,7 @@
         $pdf->Cell(35,10,$result[5],"1","0","C");
         $pdf->Cell(30,10,$result[6],"1","1","C");
     }
+
     $pdf->AddPage();
     $pieX=105;
     $pieY=70;
@@ -57,7 +64,7 @@
     $i=0;
     $pdf->SetXY($pieX-24,$pieY-59);
     $pdf->Cell(200,5,"Monthly Income Report",0,0);
-    while($i<mysqli_num_rows($query1)-1)
+    while($i<mysqli_num_rows($query1))
     {
         $color[0]=rand(0,255);
         $color[1]=rand(0,255);
@@ -80,11 +87,13 @@
     $legendY=150;
     $degunit=360/$exp_result[0];
     $exp_res_sub_tot=mysqli_fetch_all($exp_tot_sub);
+    print_r($exp_res_sub_tot);
+    echo"<br>". mysqli_num_rows($query2);
     $currentAngle=0;
     $i=0;
     $pdf->SetXY($pieX-24,$pieY-59);
     $pdf->Cell(200,5,"Monthly Expense Report",0,0);
-    while($i<mysqli_num_rows($query2)-1)
+    while($i<mysqli_num_rows($query2))
     {
         $color[0]=rand(0,255);
         $color[1]=rand(0,255);
@@ -100,8 +109,8 @@
         $legendY+=8;
         $i+=1;
     }
-    if(isset($_POST['view-online']))
+    if(isset($_POST['date-view-online']))
         $pdf->output();
-    if(isset($_POST['download']))
-    $pdf->Output($filename,'D');
+    if(isset($_POST['date-download']))
+        $pdf->Output($filename,'D');
 ?>
