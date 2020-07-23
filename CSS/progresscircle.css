@@ -12,7 +12,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* background-color: rgba(192, 180, 180, 0.384); */
     background-color: rgba(192, 180, 180, 0.384);
 }
 .container{
@@ -34,7 +33,6 @@
     border-radius: 4px;
     text-align: center;
     overflow: hidden;
-    box-shadow: 5px 5px white;
 }
 .card:hover{
     box-shadow: 5px 5px 5px dimgray;
@@ -55,7 +53,7 @@
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    z-index: 1000;
+    z-index: 1;
 }
 .number{
     position: absolute;
@@ -96,7 +94,7 @@ svg{
     position: relative;
     width: 150px;
     height: 150px;
-    z-index: 1000;
+    z-index: 1;
 }
 svg circle{
     width: 100%;

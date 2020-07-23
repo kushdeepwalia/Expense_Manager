@@ -241,10 +241,14 @@
     height: 60vh;
     padding: 10px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     line-height: 40px;
     box-shadow: 0px 0px 20px dimgrey;
+}
+#errorAddingIncome{
+    line-height: 20px;
 }
 ::-webkit-inner-spin-button,
 ::-webkit-outer-spin-button{
@@ -373,15 +377,14 @@
 .table{
     border: 2px solid black;
     width: 68.5vw;
-    /* border:none; */
     border-collapse: collapse;
 }
 .table tr th{
     font-size: 20px;
     font-family: 'Muli',sans-serif;
     padding: 10px;
-    color:black;
-    background-color:#e5e4e2;
+    color:#e5e4e2;
+    background-color:black;
     border-left: 2px solid #000;
     border-bottom: 2px solid #000;
     border-right: 2px solid #000;
