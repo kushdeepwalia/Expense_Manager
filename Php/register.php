@@ -13,7 +13,7 @@
         session_start();
         if(ret > 0)
         {
-            header("location:../index.php");
+            header("location:../index.php");//if username is taken then show message
         }
         else
         {
@@ -29,7 +29,7 @@
     }
     else
     {
-        header("location:../index.php");
+        header("location:../index.php"); //if both passwords are not equal then show message
     }
 
 ?>

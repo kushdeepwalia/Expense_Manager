@@ -13,6 +13,6 @@
     }
     else
     {
-        header("location:../index.php?login-present=no");
+        //if login details not present in the database then show message
     }
 ?>

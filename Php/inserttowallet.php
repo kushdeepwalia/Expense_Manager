@@ -12,14 +12,6 @@
         $income_desc=$_POST['income-desc'];
         $income_mode=$_POST['income-mode'];
         $query=mysqli_query($con,"INSERT INTO `$wallet` (`S. No.`, `Category`, `Amount`, `Sub Category`, `Date`, `Description`, `Mode`) VALUES (NULL, 'Income', '$income_amount', '$income_sub_category', '$income_date', '$income_desc', '$income_mode');");
-        if($query > 0)
-        {
-            header("location:../account.php?income-added=yes");
-        }
-        else
-        {
-            header("location:../account.php?income-added=no");
-        }
     }
     if(isset($_POST['submit-expense']))
     {
@@ -29,14 +21,6 @@
         $expense_desc=$_POST['expense-desc'];
         $expense_mode=$_POST['expense-mode'];
         $query=mysqli_query($con,"INSERT INTO `$wallet` (`S. No.`, `Category`, `Amount`, `Sub Category`, `Date`, `Description`, `Mode`) VALUES (NULL, 'Expense', '$expense_amount', '$expense_sub_category', '$expense_date', '$expense_desc', '$expense_mode');");
-        if($query > 0)
-        {
-            header("location:../account.php?expense-added=yes");
-        }
-        else
-        {
-            header("location:../account.php?expense-added=no");
-        }
     }
 
 ?>
