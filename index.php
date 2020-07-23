@@ -21,7 +21,7 @@
             <header class="head">
                 <a href="index.php">
                     <div class="logo-head">
-                        <img src="Images/main logo.png" alt="main-logo">
+                        <img src="Images/main-logo.png" alt="main-logo">
                         <span class="mainhead">Expense Manager</span>
                     </div>
                 </a>
@@ -33,13 +33,14 @@
                                 <div class="title">Login</div>
                                 <button data-close-button class="close-button">&times;</button>
                             </div>
-                            <form action="Php/login.php" method="post" autocomplete="off">
+                            <div id="error_login"></div>
+                            <form id="loginForm" action="Php/login.php" method="post" autocomplete="off">
                                 <table class="loginTable">
                                     <tr>
-                                        <td class="box"><input type="text" name="Username" id="Username" placeholder="Enter your Username"></td>
+                                        <td class="box"><input type="text" name="Username" id="login-Username" placeholder="Enter your Username"></td>
                                     </tr>
                                     <tr>
-                                        <td class="box"><input type="password" name="Password" id="Password" placeholder="Enter your Password"></td>
+                                        <td class="box"><input type="password" name="Password" id="login-Password" placeholder="Enter your Password"></td>
                                     </tr>
                                     <tr>
                                         <td colspan="2" align="center"><input type="submit" value="Login" id="btn"></td>
@@ -55,10 +56,11 @@
                                 <div class="title">Register</div>
                                 <button data-close-button class="close-button">&times;</button>
                             </div>
-                            <form action="Php/register.php" method="post" autocomplete="off">
+                            <div id="error_register"></div>
+                            <form id="registerForm" action="Php/register.php" method="post" autocomplete="off">
                                 <table class="loginTable">
                                     <tr>
-                                        <td class="box"><input type="text" name="Username" id="Username" placeholder="User Name"></td>
+                                        <td class="box"><input type="text" name="Username" id="register-Username" placeholder="User Name"></td>
                                     </tr>
                                     <tr>
                                         <td class="box"><input type="email" name="email" id="email" placeholder="Email Address"></td>
@@ -67,10 +69,10 @@
                                         <td class="box"><input type="text" name="wallet" id="wallet" placeholder="Enter wallet name"></td>
                                     </tr>
                                     <tr>
-                                        <td class="box"><input type="password" name="Password" id="Password" placeholder="Enter Password"></td>
+                                        <td class="box"><input type="password" name="Password" id="register-Password" placeholder="Enter Password"></td>
                                     </tr>
                                     <tr>
-                                        <td class="box"><input type="password" name="ConPassword" id="Password" placeholder="Re-Enter Password"></td>
+                                        <td class="box"><input type="password" name="ConPassword" id="ConPassword" placeholder="Re-Enter Password"></td>
                                     </tr>
                                     <tr>
                                         <td colspan="2" align="center"><input type="submit" value="Register" name="register" id="btn"></td>
@@ -110,5 +112,7 @@
         </div>
         <script src="Js/pop-up.js"></script>
         <script src="Js/loader.js"></script>
+        <script src="Js/index-login-validation.js"></script>
+        <script src="Js/index-register-validation.js"></script>
     </body>
 </html>

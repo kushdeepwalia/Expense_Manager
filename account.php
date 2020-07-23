@@ -1,11 +1,15 @@
 <?php
     session_start();
     $username=$_SESSION['username'];
+    if(!($username))
+        header("location:index.php");
 
     $conn=mysqli_connect('localhost','root','');
     mysqli_select_db($conn,'expense_clients') or die("Could connect to the database"); 
     $profile_query=mysqli_query($conn,"SELECT * FROM `all_users` WHERE `Username`='$username'");
     $profile_result=mysqli_fetch_array($profile_query);
+    $email=$profile_result[3];
+    $_SESSION['email']=$email;
     mysqli_close($conn);
 
     $con=mysqli_connect('localhost','root','');
@@ -90,16 +94,16 @@
 </head>
 
 <body>
-    <!-- <div class="loader">
+    <div class="loader">
         <div class="loading">
             <span>Loading...</span>
         </div>
-    </div> -->
+    </div>
     <div class="content-box">
         <header class="header">
             <div class="logo_head">
                 <span id="web-image">
-                    <img src="Images/main logo.png" alt="Wallet" id="web-logo">
+                    <img src="Images/main-logo.png" alt="Wallet" id="web-logo">
                 </span>
                 <span id="web-name">
                     Expense Manager
@@ -110,7 +114,7 @@
                 <span><?php echo$wallet;?></span>
             </div>
             <div class="logout">
-                <a href="index.php"><button id="logout">Logout</button></a>
+                <a href="Php/logout.php"><button id="logout">Logout</button></a>
             </div>
         </header>
         <div class="content">
@@ -174,23 +178,14 @@
                     </div>
                     <div class="income-right">
                         <div class="form">
-                            <form action="Php/inserttowallet.php" method="post">
+                            <div id="errorAddingIncome"></div>
+                            <form action="Php/inserttowallet.php" method="post" name="incomeForm" autocomplete="off">
                                 <table align="center">
                                     <tr>
                                         <td>
-                                            <span class="field">Amount: </span><input type="number" name="income-amount"
-                                                id="income-amount">
+                                            <span class="field">Amount: </span><input type="number" name="income-amount" min="1" id="income-amount">
                                         </td>
                                     </tr>
-                                    <!-- <?php
-                                        // $a=$_SESSION['color'];
-                                        // if(strcmp("none",$a)==0)
-                                        // {
-                                        //     echo"<span class='no-color'>Select a Valid Category</span>";
-                                        //     $_SESSION['color']="";
-                                        //     session_abort();
-                                        // }
-                                    ?> -->
                                     <tr>
                                         <td>
                                             <span class="field">Source: </span>
@@ -247,12 +242,12 @@
                     </div>
                     <div class="expense-right">
                         <div class="form">
-                            <form action="Php/inserttowallet.php" method="post">
+                            <div id="errorAddingExpense"></div>
+                            <form action="Php/inserttowallet.php" method="post" name="expenseForm" autocomplete="off">
                                 <table align="center">
                                     <tr>
                                         <td>
-                                            <span class="field">Amount: </span><input type="text" name="expense-amount"
-                                                id="expense-amount">
+                                            <span class="field">Amount: </span><input type="text" name="expense-amount"  min="1" id="expense-amount">
                                         </td>
                                     </tr>
                                     <tr>
@@ -491,35 +486,7 @@
     <script src="Js/pop-up.js"></script>
     <script src="Js/account-nav.js"></script>
     <script src="Js/loader.js"></script>
+    <script src="Js/account-income-validation.js"></script>
+    <script src="Js/account-expense-validation.js"></script>
 </body>
 </html>
-<?php
-    if(isset($_GET['income-added']))
-    {
-        $income_added=$_GET['income-added'];
-        if(strcmp("Yes",$income_added))
-        {
-            echo"<script>alert('Income Report Added to Your Wallet');</script>";
-            $_GET['income-added']="";
-        }
-        else if(strcmp("No",$income_added))
-        {
-            echo"<script>alert('Income Report <strong>NOT</strong> Added to Your Wallet');</script>";
-            $_GET['income-added']="";
-        }
-    }
-    if(isset($_GET['expense-added']))
-    {
-        $expense_added=$_GET['expense-added'];
-        if(strcmp("Yes",$expense_added))
-        {
-            echo"<script>alert('Expense Report Added to Your Wallet');</script>";
-            $_GET['expense-added']="";
-        }
-        else if(strcmp("No",$expense_added))
-        {
-            echo"<script>alert('Expense Report <strong>NOT</strong> Added to Your Wallet');</script>";
-            $_GET['expense-added']="";
-        }
-    }
-?>
