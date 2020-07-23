@@ -16,7 +16,9 @@
     box-sizing: border-box;
 }
 body{
-    background-color: white;
+    background-image: url('/Images/home-pg-bg.jpg');
+    background-repeat: no-repeat;
+    background-size: 104% 1750%;
 }
 .content{
     /* position: relative; */
@@ -76,6 +78,7 @@ body{
 #loginBtn,#registerBtn{
     background-color: transparent;
     border: none;
+    color: white;
     font-family: 'Muli', sans-serif;
     border-left: 2px solid rgb(245, 41, 61);
     font-size: 20px;
@@ -86,7 +89,7 @@ body{
 
 #loginBtn:hover,#registerBtn:hover{
     color: rgb(245, 41, 61);
-    border-left: 2px solid black;
+    border-left: 2px solid white;
 }
 .intro{
     position: relative;
