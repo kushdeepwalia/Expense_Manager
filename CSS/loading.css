@@ -3,7 +3,7 @@
     height: 200px;
     box-sizing: border-box;
     border-radius: 50%;
-    border-top: 10px solid red;
+    border-top: 10px solid rgb(245, 41, 61);
     position: relative;
     animation: a1 2s linear infinite;
 }
@@ -23,19 +23,21 @@
     border-radius: 50%;
 }
 .loading::before{
-    border-top: 10px solid blue;
+    border-top: 10px solid black;
     transform: rotate(120deg);
 }
 .loading::after{
-    border-top: 10px solid yellow;
+    border-top: 10px solid grey;
     transform: rotate(240deg);
 }
 .loading span{
     position: absolute;
     width: 200px;
     height: 200px;
+    font-size: 30px;
     text-align: center;
     line-height: 200px;
+    font-family: 'Muli',sans-serif;
     animation: a2 2s linear infinite;
 }
 @keyframes a2{
