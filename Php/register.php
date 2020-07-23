@@ -13,13 +13,13 @@
         session_start();
         if(ret > 0)
         {
-            header("location:../index.php?message=yes");
+            header("location:../index.php");
         }
         else
         {
             $query1="INSERT INTO `all_users` (`Username`, `Password`, `Email`) VALUES ('$username', '$password', '$email')";
             $query2="CREATE DATABASE `$username`";
-            $query3="CREATE TABLE `$username`.`$wallet` ( `S. No.` INT NOT NULL AUTO_INCREMENT PRIMARY KEY , `Category` VARCHAR(10) NOT NULL , `Amount` INT NOT NULL, `Sub Category` VARCHAR(20) NOT NULL, `Date` DATE NOT NULL, `Description` VARCHAR(70) NOT NULL, `Mode` VARCHAR(10) NOT NULL )";
+            $query3="CREATE TABLE `$username`.`$wallet` ( `S. No.` INT NOT NULL AUTO_INCREMENT PRIMARY KEY , `Category` VARCHAR(10) NOT NULL , `Amount` INT NOT NULL, `Sub Category` VARCHAR(20) NOT NULL, `Date` DATE NOT NULL, `Description` VARCHAR(70) NOT NULL, `Mode` VARCHAR(15) NOT NULL )";
             $ins=mysqli_query($con,$query1);
             $credat=mysqli_query($con,$query2);
             $crewal=mysqli_query($con,$query3);
@@ -29,7 +29,7 @@
     }
     else
     {
-        header("location:../index.php?msg=no");
+        header("location:../index.php");
     }
 
 ?>
