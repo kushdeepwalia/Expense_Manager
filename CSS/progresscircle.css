@@ -12,6 +12,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    /* background-color: rgba(192, 180, 180, 0.384); */
     background-color: rgba(192, 180, 180, 0.384);
 }
 .container{
@@ -24,17 +25,20 @@
 .card{
     position: relative;
     width: 250px;
+    background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 250px;
+    margin-bottom: 15px;
     border-radius: 4px;
     text-align: center;
     overflow: hidden;
-    transition: 0.5s;
+    box-shadow: 5px 5px white;
 }
 .card:hover{
-    transform: translateY(-10px);
+    box-shadow: 5px 5px 5px dimgray;
+    background-color: white;
 }
 .card::before{
     content: '';
@@ -43,7 +47,6 @@
     left: -50%;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.3);
     pointer-events: none;
     z-index: 1;
 }
@@ -52,7 +55,6 @@
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    box-shadow: 0 0 50px #000;
     z-index: 1000;
 }
 .number{
@@ -67,35 +69,28 @@
     border-radius: 50%;
 }
 .number h2{
-    color: #777;
+    color: black;
     font-weight: 700;
-    font-size: 50px;
-    transition: 0.5s;
-}
-.card:hover .percent .number h2{
-    color: #fff;
-    font-size: 60px;
+    font-size: 40px;
+    font-family: 'Oxygen',sans-serif;
 }
 .number h2 span{
-    color: #777;
+    color: black;
     font-size: 24px;
     transition: 0.5s;
 }
 .text{
     position: relative;
-    color: #777;
+    color: black;
     font-weight: 700;
     margin-top: 20px;
     font-size: 28px;
     letter-spacing: 1px;
     text-transform: capitalize;
-    transition: 0.5s;
+    font-family: 'Enriqueta',serif;
 }
-.card:hover .text{
-    color: #fff;
-}
-.card:hover .percent .number h2 span{
-    color: #fff;
+.text span{
+    font-family: 'Oxygen',sans-serif;
 }
 svg{
     position: relative;
@@ -107,7 +102,7 @@ svg circle{
     width: 100%;
     height: 100%;
     fill: none;
-    stroke: black;
+    stroke: grey;
     stroke-width: 10;
     transform: translate(5px, 5px);
 }
