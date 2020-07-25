@@ -3,7 +3,6 @@
     $username=$_SESSION['username'];
     if(!($username))
         header("location:index.php");
-    echo$username;
     $conn=mysqli_connect('localhost','root','');
     mysqli_select_db($conn,'expense_clients') or die("Could connect to the database"); 
     $profile_query=mysqli_query($conn,"SELECT * FROM `all_users` WHERE `Username`='$username'");
@@ -455,16 +454,16 @@
                                                     <form action="Php/updateProfile.php" method="POST"  autocomplete="off">
                                                         <table class="loginTable">
                                                             <tr>
-                                                                <td class="box"><input type="text" name="User" id="Username" placeholder="<?php echo$profile_result[1] ?>"></td>
+                                                                <td class="box"><input type="text" name="User" id="updateUser" placeholder="<?php echo$profile_result[1] ?>"></td>
                                                             </tr>
                                                             <tr>
-                                                                <td class="box"><input type="email" name="email-id" id="email" placeholder="<?php echo$profile_result[3] ?>"></td>
+                                                                <td class="box"><input type="email" name="email-id" id="updateEmail" placeholder="<?php echo$profile_result[3] ?>"></td>
                                                             </tr>
                                                             <tr>
-                                                                <td class="box"><input type="text" name="wallet-name" id="wallet" placeholder="<?php echo$profile_result[4] ?>"></td>
+                                                                <td class="box"><input type="text" name="wallet-name" id="updateWallet" placeholder="<?php echo$profile_result[4] ?>"></td>
                                                             </tr>
                                                             <tr>
-                                                                <td class="box"><input type="password" name="Pass" id="Password" placeholder="<?php echo$profile_result[2] ?>"></td>
+                                                                <td class="box"><input type="password" name="Pass" id="updatePassword" placeholder="<?php echo$profile_result[2] ?>"></td>
                                                             </tr>
                                                             
                                                             <tr>
