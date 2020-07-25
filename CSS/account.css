@@ -8,12 +8,6 @@
 title{
     text-transform: capitalize;
 }
-/* .themered{
-    color: rgb(245, 41, 61);
-}
-.themeblack{
-    color: black;
-} */
 .header{
     display: flex;
     height: 11vh;
