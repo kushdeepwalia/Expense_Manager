@@ -18,7 +18,7 @@ expenseForm.addEventListener('submit',(e) =>{
         messages.push('Error: Date not Mentioned \n');
     }
     if(expense_mode.value === "none"){
-        messages.push('Error: expense Mode not specified \n');
+        messages.push('Error: Expense Mode not specified \n');
     }
     if(messages.length > 0){
         e.preventDefault()

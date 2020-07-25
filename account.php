@@ -17,47 +17,67 @@
     $table = mysqli_fetch_array($result);
     $wallet=$table[0];
 
+    $total_expense = Array();
+    $total_save = Array();
+    $total_percent_save = Array();
+    $total_percent_expense = Array();
+    $total_income = Array();
+    $num_row=0;
+    $zero=[0,0,0,0];
+    
     $_SESSION['wallet']=$wallet;
     $query=mysqli_query($con,"SELECT * FROM `$wallet`");
     if(mysqli_num_rows($query)!=0)
-    
     {
-        $total_income = Array();
-        $query_income=mysqli_query($con,"SELECT * FROM `$wallet` Where `Category`='Income'");
-        $query_expense=mysqli_query($con,"SELECT * FROM `$wallet` Where `Category`='Expense'");
+        $queryIncome="SELECT * FROM `$wallet` Where `Category`='Income'";
+        $query_income=mysqli_query($con,$queryIncome);
+        $queryExpense="SELECT * FROM `$wallet` Where `Category`='Expense'";
+        $query_expense=mysqli_query($con,$queryExpense);
         for($i=0;$i<mysqli_num_rows($query_income);$i++)
         {
             $income=mysqli_query($con,"SELECT SUM(Amount) FROM `$wallet` Where `Category`='Income'");
             $total_income[$i]=mysqli_fetch_array($income);
         }
-        $total_expense = Array();
         for($i=0;$i<mysqli_num_rows($query_expense);$i++)
         {
             $expense=mysqli_query($con,"SELECT SUM(Amount) FROM `$wallet` Where `Category`='Expense'");
             $total_expense[$i]=mysqli_fetch_array($expense);
         }
-        $total_save = Array();
-        $total_save[0][0] = $total_income[0][0] - $total_expense[0][0];
-        $total_percent_expense = Array();
-        $total_percent_expense[0][0]=( $total_expense[0][0] / $total_income[0][0]) *100;
-        $total_percent_expense[0][0]=round($total_percent_expense[0][0],1);
-        $total_percent_save = Array();
-        $total_percent_save[0][0]=( $total_save[0][0] / $total_income[0][0]) *100;
-        $total_percent_save[0][0]=round($total_percent_save[0][0],1);
-        $zero=[0,0,0,0];
-        if($total_percent_expense[0][0]== 0) 
-            $zero[0]=0;
-        else
+        $num_row=mysqli_num_rows($query_income);
+        if(mysqli_num_rows($query_income)>0 && mysqli_num_rows($query_expense)>0)
         {
-            $zero[0]=$total_percent_expense[0][0];
-            $zero[2]=$total_expense[0][0];
+            $total_percent_expense[0][0]=( $total_expense[0][0] / $total_income[0][0]) *100;
+            $total_percent_expense[0][0]=round($total_percent_expense[0][0],1);
+            if($total_percent_expense[0][0]== 0) 
+                $zero[0]=0;
+            else
+            {
+                $zero[0]=$total_percent_expense[0][0];
+                $zero[2]=$total_expense[0][0];
+            }
+            $total_save[0][0] = $total_income[0][0]-$total_expense[0][0];
+            $total_percent_save[0][0]=( $total_save[0][0] / $total_income[0][0]) *100;
+            $total_percent_save[0][0]=round($total_percent_save[0][0],1);
+            if($total_percent_save[0][0]== 0) 
+                $zero[1]=0;
+            else 
+            {
+                $zero[1]=$total_percent_save[0][0];
+                $zero[3]=$total_save[0][0];
+            }
         }
-        if($total_percent_save[0][0]== 0) 
-            $zero[1]=0;
-        else 
+        if(mysqli_num_rows($query_income)>0 && mysqli_num_rows($query_expense)<=0)
         {
-            $zero[1]=$total_percent_save[0][0];
-            $zero[3]=$total_save[0][0];
+            $total_save[0][0] = $total_income[0][0];
+            $total_percent_save[0][0]=( $total_save[0][0] / $total_income[0][0]) *100;
+            $total_percent_save[0][0]=round($total_percent_save[0][0],1);
+            if($total_percent_save[0][0]== 0) 
+                $zero[1]=0;
+            else 
+            {
+                $zero[1]=$total_percent_save[0][0];
+                $zero[3]=$total_save[0][0];
+            }
         }
     }
     else
@@ -137,7 +157,7 @@
                                         <h2><?php echo$zero[0]; ?><span>%</span></h2>
                                     </div>
                                 </div>
-                                <div class="text">Expenses <br><span><?php echo$zero[2]; ?></span> </div>
+                                <div class="text">Expense <br><span>&#8377; <?php echo$zero[2]; ?></span> </div>
                             </div>
                         </div>
                         <div class="card">
@@ -151,7 +171,7 @@
                                         <h2><?php echo $zero[1]; ?><span>%</span></h2>
                                     </div>
                                 </div>
-                                <div class="text">Savings <br> <span><?php echo$zero[3]; ?></span></div>
+                                <div class="text">Balance <br> <span>&#8377; <?php echo$zero[3]; ?></span></div>
                             </div>
                         </div>
                     </div>
@@ -248,6 +268,12 @@
                         </div>
                         <div class="expense-right">
                             <div class="form">
+                                <?php
+                                    if($num_row<=0)
+                                    {
+                                        echo"<div class='error'>Please Add Income First</div>";
+                                    }
+                                ?>
                                 <div id="errorAddingExpense"></div>
                                 <form action="Php/inserttowallet.php" method="post" id="expenseForm" autocomplete="off">
                                     <table align="center">
@@ -261,16 +287,16 @@
                                                 <span class="field">Source: </span>
                                                 <select name="expense-sub-category" id="expense-sub-category">
                                                     <option value="none">--select--</option>
-                                                    <option value="Bills & Utilities">Bills & Utilities</option>
+                                                    <option value="Bills">Bills</option>
                                                     <option value="Business">Business</option>
                                                     <option value="Education">Education</option>
                                                     <option value="Entertainment">Entertainment</option>
                                                     <option value="Family">Family</option>
-                                                    <option value="Fees & Charges">Fees & Charges</option>
-                                                    <option value="Food & Beverages">Food & Beverages</option>
+                                                    <option value="Fees">Fees</option>
+                                                    <option value="Food & Drinks">Food & Drinks</option>
                                                     <option value="Friends & Lover">Friends & Lover</option>
-                                                    <option value="Gifts & Donations">Gifts & Donations</option>
-                                                    <option value="Health & Fitness">Health & Fitness</option>
+                                                    <option value="Gifts">Gifts</option>
+                                                    <option value="Health">Health</option>
                                                     <option value="Insurance">Insurance</option>
                                                     <option value="Investment">Investment</option>
                                                     <option value="Others">Others</option>
@@ -284,7 +310,7 @@
                                         <tr>
                                             <td>
                                                 <span class="field">Date: </span>
-                                                <input type="date" name="expense-date" id="expense-date">
+                                                <input type="date" name="expense-date" id="expense-date" max=>
                                             </td>
                                         </tr>
                                         <tr>
@@ -383,35 +409,32 @@
                             <span>Reports</span>
                         </div>
                         <div class="report-right">
-                            <div class="dates">
-                                <span class="date">Date Wise</span>
-                                <input type="date" name="date" id="dates">
-                            </div>
-                            <form action="Php/createpdf.php" method="post">
+                            <form action="Php/dateCreatePDF.php" method="post">
+                                <div class="dates">
+                                    <span class="date">Date Wise</span>
+                                    <input type="date" name="date" id="dates">
+                                </div>
                                 <input type="submit" value="View Online" id="date-view-online" name="date-view-online" formtarget="_blank">
                                 <input type="submit" value="Download"  id="date-download" name="date-download" formtarget="_blank">
                             </form>
-                            <div class="months">
-                                <span class="month">Month Wise</span>
-                                <select name="month" id="months">
-                                    <option value="none">--select--</option>
-                                    <option value="January">January</option>
-                                    <option value="February">February</option>
-                                    <option value="March">March</option>
-                                    <option value="April">April</option>
-                                    <option value="May">May</option>
-                                    <option value="June">June</option>
-                                    <option value="July">July</option>
-                                    <option value="August">August</option>
-                                    <option value="September">September</option>
-                                    <option value="October">October</option>
-                                    <option value="November">November</option>
-                                    <option value="December">December</option>
-                                </select>
-                            </div>
-                            <form action="Php/createpdf.php" method="post">
-                                <input type="submit" value="View Online" name="month-view-online" id="month-view-online" formtarget="_blank">
-                                <input type="submit" value="Download" name="month-download" id="month-download" formtarget="_blank">
+                            <br>
+                            <form action="Php/rangeCreatePDF.php" method="post">
+                                <div class="dates">
+                                    <span class="date">Specific Range</span><br>
+                                </div>
+                                <span class="date">Start Date</span>
+                                <input type="date" name="startDate" id="dates"><br>
+                                <span class="date">End Date</span>
+                                <input type="date" name="endDate" id="dates"><br>
+                                <input type="submit" value="View Online" id="date-view-online" name="range-view-online" formtarget="_blank">
+                                <input type="submit" value="Download"  id="date-download" name="range-download" formtarget="_blank">
+                            </form>
+                            <form action="Php/allCreatePDF.php" method="post">
+                                <div class="months">
+                                    <span class="month">All Transaction</span>
+                                </div>
+                                <input type="submit" value="View Online" name="all-view-online" id="month-view-online" formtarget="_blank">
+                                <input type="submit" value="Download" name="all-download" id="month-download" formtarget="_blank">
                             </form>
                         </div>
                         

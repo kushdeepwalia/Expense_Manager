@@ -29,7 +29,7 @@
     }
     else
     {
-        header("location:../index.php"); //if both passwords are not equal then show message
+        header("location:../index.php");
     }
 
 ?>

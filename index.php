@@ -117,3 +117,10 @@
         <script src="Js/index-register-validation.js"></script>
     </body>
 </html>
+<?php
+    $username_taken=$_GET['username-taken'];
+    if(strcmp("yes",$username_taken)==0)
+    {
+        echo"<script>alert('Username Taken')</script>";
+    }
+?>
