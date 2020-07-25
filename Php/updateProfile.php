@@ -63,17 +63,9 @@
         else
         {
             echo"Not Done 5<br>";
-        // }
-        // if($query6>0)
-        // {
-        //     echo"Done<br>";
-        // }
-        // else
-        // {
-        //     echo"Not Done<br>";
         }
         $_SESSION['username']=$Username;
         echo$_SESSION['username'];
-        // header("location:../account.php");
+        header("location:../account.php");
     }
 ?>
