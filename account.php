@@ -185,7 +185,7 @@
                         <div class="income-right">
                             <div class="form">
                                 <div id="errorAddingIncome"></div>
-                                <form action="Php/inserttowallet.php" method="post" name="incomeForm" autocomplete="off">
+                                <form action="Php/inserttowallet.php" method="post" id="incomeForm" autocomplete="off">
                                     <table align="center">
                                         <tr>
                                             <td>
@@ -249,7 +249,7 @@
                         <div class="expense-right">
                             <div class="form">
                                 <div id="errorAddingExpense"></div>
-                                <form action="Php/inserttowallet.php" method="post" name="expenseForm" autocomplete="off">
+                                <form action="Php/inserttowallet.php" method="post" id="expenseForm" autocomplete="off">
                                     <table align="center">
                                         <tr>
                                             <td>
@@ -457,7 +457,8 @@
                                                         <div class="title">Update</div>
                                                         <button data-close-button class="close-button">&times;</button>
                                                     </div>
-                                                    <form action="Php/updateProfile.php" method="POST"  autocomplete="off">
+                                                    <div id="profileUpdateError"></div>
+                                                    <form action="Php/updateProfile.php" method="POST" id="profileForm" autocomplete="off">
                                                         <table class="loginTable">
                                                             <tr>
                                                                 <td class="box"><input type="text" name="User" id="updateUser" placeholder="<?php echo$profile_result[1] ?>"></td>
@@ -494,5 +495,6 @@
         <script src="Js/loader.js"></script>
         <script src="Js/account-income-validation.js"></script>
         <script src="Js/account-expense-validation.js"></script>
+        <script src="Js/account-profile-validation.js"></script>
     </body>
 </html>
