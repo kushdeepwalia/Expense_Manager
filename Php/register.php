@@ -17,7 +17,7 @@
         }
         else
         {
-            $query1="INSERT INTO `all_users` (`Username`, `Password`, `Email`) VALUES ('$username', '$password', '$email')";
+            $query1="INSERT INTO `all_users` (`Username`, `Password`, `Email`,`Wallet Name`) VALUES ('$username', '$password', '$email','$wallet')";
             $query2="CREATE DATABASE `$username`";
             $query3="CREATE TABLE `$username`.`$wallet` ( `S. No.` INT NOT NULL AUTO_INCREMENT PRIMARY KEY , `Category` VARCHAR(10) NOT NULL , `Amount` INT NOT NULL, `Sub Category` VARCHAR(20) NOT NULL, `Date` DATE NOT NULL, `Description` VARCHAR(70) NOT NULL, `Mode` VARCHAR(15) NOT NULL )";
             $ins=mysqli_query($con,$query1);

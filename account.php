@@ -3,7 +3,7 @@
     $username=$_SESSION['username'];
     if(!($username))
         header("location:index.php");
-
+    echo$username;
     $conn=mysqli_connect('localhost','root','');
     mysqli_select_db($conn,'expense_clients') or die("Could connect to the database"); 
     $profile_query=mysqli_query($conn,"SELECT * FROM `all_users` WHERE `Username`='$username'");
@@ -71,422 +71,423 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <style>
-        .card:nth-child(1) svg circle:nth-child(2) {
-            stroke-dashoffset: calc(440 - (440 * <?php echo$zero[0]; ?>) /100);
-            stroke: rgb(245,41,61);
-        }
-        
-        .card:nth-child(2) svg circle:nth-child(2) {
-            stroke-dashoffset: calc(-1 * (440 * <?php echo$zero[0]; ?>) /100);
-            stroke: black;
-        }
-    </style>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hey <?php echo$username; ?></title>
-    <link rel="stylesheet" href="CSS/pop-up.css">
-    <link rel="stylesheet" href="CSS/loading.css">
-    <link rel="stylesheet" href="CSS/account.css">
-    <link rel="stylesheet" href="CSS/custom_scroll.css">
-    <link rel="stylesheet" href="CSS/progresscircle.css">
-</head>
+    <head>
+        <style>
+            .card:nth-child(1) svg circle:nth-child(2) {
+                stroke-dashoffset: calc(440 - (440 * <?php echo$zero[0]; ?>) /100);
+                stroke: rgb(245,41,61);
+            }
+            
+            .card:nth-child(2) svg circle:nth-child(2) {
+                stroke-dashoffset: calc(-1 * (440 * <?php echo$zero[0]; ?>) /100);
+                stroke: black;
+            }
+        </style>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Hey <?php echo$username; ?></title>
+        <link rel="stylesheet" href="CSS/pop-up.css">
+        <link rel="stylesheet" href="CSS/loading.css">
+        <link rel="stylesheet" href="CSS/account.css">
+        <link rel="stylesheet" href="CSS/custom_scroll.css">
+        <link rel="stylesheet" href="CSS/progresscircle.css">
+        <link rel="shortcut icon" href="Images/main-logo.png" type="image/x-icon">
+    </head>
 
-<body>
-    <div class="loader">
-        <div class="loading">
-            <span>Loading...</span>
+    <body>
+        <div class="loader">
+            <div class="loading">
+                <span>Loading...</span>
+            </div>
         </div>
-    </div>
-    <div class="content-box">
-        <header class="header">
-            <div class="logo_head">
-                <span id="web-image">
-                    <img src="Images/main-logo.png" alt="Wallet" id="web-logo">
-                </span>
-                <span id="web-name">
-                    Expense Manager
-                </span>
-            </div>
-            <div class="wallet-name">
-                <span id="wallet-name">wallet name: </span>
-                <span><?php echo$wallet;?></span>
-            </div>
-            <div class="logout">
-                <a href="Php/logout.php"><button id="logout">Logout</button></a>
-            </div>
-        </header>
-        <div class="content">
-            <div class="containerbody">
-                <div class="container">
-                    <div class="card">
-                        <div class="box">
-                            <div class="percent">
-                                <svg>
-                                    <circle cx="70" cy="70" r="70"></circle>
-                                    <circle cx="70" cy="70" r="70"></circle>
-                                </svg>
-                                <div class="number">
-                                    <h2><?php echo$zero[0]; ?><span>%</span></h2>
+        <div class="content-box">
+            <header class="header">
+                <div class="logo_head">
+                    <span id="web-image">
+                        <img src="Images/main-logo.png" alt="Wallet" id="web-logo">
+                    </span>
+                    <span id="web-name">
+                        Expense Manager
+                    </span>
+                </div>
+                <div class="wallet-name">
+                    <span id="wallet-name">wallet name: </span>
+                    <span><?php echo$wallet;?></span>
+                </div>
+                <div class="logout">
+                    <a href="Php/logout.php"><button id="logout">Logout</button></a>
+                </div>
+            </header>
+            <div class="content">
+                <div class="containerbody">
+                    <div class="container">
+                        <div class="card">
+                            <div class="box">
+                                <div class="percent">
+                                    <svg>
+                                        <circle cx="70" cy="70" r="70"></circle>
+                                        <circle cx="70" cy="70" r="70"></circle>
+                                    </svg>
+                                    <div class="number">
+                                        <h2><?php echo$zero[0]; ?><span>%</span></h2>
+                                    </div>
                                 </div>
+                                <div class="text">Expenses <br><span><?php echo$zero[2]; ?></span> </div>
                             </div>
-                            <div class="text">Expenses <br><span><?php echo$zero[2]; ?></span> </div>
                         </div>
-                    </div>
-                    <div class="card">
-                        <div class="box">
-                            <div class="percent">
-                                <svg>
-                                    <circle cx="70" cy="70" r="70"></circle>
-                                    <circle cx="70" cy="70" r="70"></circle>
-                                </svg>
-                                <div class="number">
-                                    <h2><?php echo $zero[1]; ?><span>%</span></h2>
+                        <div class="card">
+                            <div class="box">
+                                <div class="percent">
+                                    <svg>
+                                        <circle cx="70" cy="70" r="70"></circle>
+                                        <circle cx="70" cy="70" r="70"></circle>
+                                    </svg>
+                                    <div class="number">
+                                        <h2><?php echo $zero[1]; ?><span>%</span></h2>
+                                    </div>
                                 </div>
+                                <div class="text">Savings <br> <span><?php echo$zero[3]; ?></span></div>
                             </div>
-                            <div class="text">Savings <br> <span><?php echo$zero[3]; ?></span></div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="main-content">
-                <nav class="nav">
-                    <ul>
-                        <a data-tab-target="#add-income">
-                            <li>Add Income</li>
-                        </a>
-                        <a data-tab-target="#add-expense">
-                            <li>Add Expense</li>
-                        </a>
-                        <a data-tab-target="#all-transac">
-                            <li>All Transcations</li>
-                        </a>
-                        <a data-tab-target="#reports">
-                            <li>Reports</li>
-                        </a>
-                        <a data-tab-target="#pro">
-                            <li class="br-1">Profile Settings</li>
-                        </a>
-                    </ul>
-                </nav>
-                <section id="add-income" class="add-income inactive">
-                    <div class="income-left">
-                        <img src="Images/income-symbol.png" alt="income-symbol-image" id="income-symbol">
-                        <br>
-                        <span>Add Income</span>
-                    </div>
-                    <div class="income-right">
-                        <div class="form">
-                            <div id="errorAddingIncome"></div>
-                            <form action="Php/inserttowallet.php" method="post" name="incomeForm" autocomplete="off">
-                                <table align="center">
-                                    <tr>
-                                        <td>
-                                            <span class="field">Amount: </span><input type="number" name="income-amount" min="1" id="income-amount">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <span class="field">Source: </span>
-                                            <select name="income-sub-category" id="income-sub-category">
-                                                <option value="none">--select--</option>
-                                                <option value="Award">Award</option>
-                                                <option value="Gifts">Gifts</option>
-                                                <option value="Interest Money">Interest Money</option>
-                                                <option value="Others">Others</option>
-                                                <option value="Salary">Salary</option>
-                                                <option value="Selling">Selling</option>
-                                            </select>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <span class="field">Date: </span>
-                                            <input type="date" name="income-date" id="income-date">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <span class="field">Description: </span><input type="text"
-                                                name="income-desc" id="income-desc">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <span class="field">Mode: </span>
-                                            <select name="income-mode" id="income-mode">
-                                                <option value="none">--select--</option>
-                                                <option value="Cash">Cash</option>
-                                                <option value="Credit Card">Credit Card</option>
-                                                <option value="Debit Card">Debit Card</option>
-                                                <option value="Net Banking">Net Banking</option>
-                                            </select>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td align="center">
-                                            <input type="submit" value="Submit" name="submit-income" id="submit-income">
-                                        </td>
-                                    </tr>
-                                </table>
+                <div class="main-content">
+                    <nav class="nav">
+                        <ul>
+                            <a data-tab-target="#add-income">
+                                <li>Add Income</li>
+                            </a>
+                            <a data-tab-target="#add-expense">
+                                <li>Add Expense</li>
+                            </a>
+                            <a data-tab-target="#all-transac">
+                                <li>All Transcations</li>
+                            </a>
+                            <a data-tab-target="#reports">
+                                <li>Reports</li>
+                            </a>
+                            <a data-tab-target="#pro">
+                                <li class="br-1">Profile Settings</li>
+                            </a>
+                        </ul>
+                    </nav>
+                    <section id="add-income" class="add-income inactive">
+                        <div class="income-left">
+                            <img src="Images/income-symbol.png" alt="income-symbol-image" id="income-symbol">
+                            <br>
+                            <span>Add Income</span>
+                        </div>
+                        <div class="income-right">
+                            <div class="form">
+                                <div id="errorAddingIncome"></div>
+                                <form action="Php/inserttowallet.php" method="post" name="incomeForm" autocomplete="off">
+                                    <table align="center">
+                                        <tr>
+                                            <td>
+                                                <span class="field">Amount: </span><input type="number" name="income-amount" min="1" id="income-amount">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span class="field">Source: </span>
+                                                <select name="income-sub-category" id="income-sub-category">
+                                                    <option value="none">--select--</option>
+                                                    <option value="Award">Award</option>
+                                                    <option value="Gifts">Gifts</option>
+                                                    <option value="Interest Money">Interest Money</option>
+                                                    <option value="Others">Others</option>
+                                                    <option value="Salary">Salary</option>
+                                                    <option value="Selling">Selling</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span class="field">Date: </span>
+                                                <input type="date" name="income-date" id="income-date">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span class="field">Description: </span><input type="text"
+                                                    name="income-desc" id="income-desc">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span class="field">Mode: </span>
+                                                <select name="income-mode" id="income-mode">
+                                                    <option value="none">--select--</option>
+                                                    <option value="Cash">Cash</option>
+                                                    <option value="Credit Card">Credit Card</option>
+                                                    <option value="Debit Card">Debit Card</option>
+                                                    <option value="Net Banking">Net Banking</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center">
+                                                <input type="submit" value="Submit" name="submit-income" id="submit-income">
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+                    <section id="add-expense" class="add-expense inactive">
+                        <div class="expense-left">
+                            <img src="Images/expense-symbol.png" alt="expense-symbol-image" id="expense-symbol">
+                            <br>
+                            <span>Add expense</span>
+                        </div>
+                        <div class="expense-right">
+                            <div class="form">
+                                <div id="errorAddingExpense"></div>
+                                <form action="Php/inserttowallet.php" method="post" name="expenseForm" autocomplete="off">
+                                    <table align="center">
+                                        <tr>
+                                            <td>
+                                                <span class="field">Amount: </span><input type="text" name="expense-amount"  min="1" id="expense-amount">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span class="field">Source: </span>
+                                                <select name="expense-sub-category" id="expense-sub-category">
+                                                    <option value="none">--select--</option>
+                                                    <option value="Bills & Utilities">Bills & Utilities</option>
+                                                    <option value="Business">Business</option>
+                                                    <option value="Education">Education</option>
+                                                    <option value="Entertainment">Entertainment</option>
+                                                    <option value="Family">Family</option>
+                                                    <option value="Fees & Charges">Fees & Charges</option>
+                                                    <option value="Food & Beverages">Food & Beverages</option>
+                                                    <option value="Friends & Lover">Friends & Lover</option>
+                                                    <option value="Gifts & Donations">Gifts & Donations</option>
+                                                    <option value="Health & Fitness">Health & Fitness</option>
+                                                    <option value="Insurance">Insurance</option>
+                                                    <option value="Investment">Investment</option>
+                                                    <option value="Others">Others</option>
+                                                    <option value="Shopping">Shopping</option>
+                                                    <option value="Transportation">Transportation</option>
+                                                    <option value="Travel">Travel</option>
+                                                    <option value="Withdrawal">Withdrawal</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span class="field">Date: </span>
+                                                <input type="date" name="expense-date" id="expense-date">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span class="field">Description: </span><input type="text"
+                                                    name="expense-desc" id="expense-desc">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span class="field">Mode: </span>
+                                                <select name="expense-mode" id="expense-mode">
+                                                    <option value="none">--select--</option>
+                                                    <option value="Cash">Cash</option>
+                                                    <option value="Credit Card">Credit Card</option>
+                                                    <option value="Debit Card">Debit Card</option>
+                                                    <option value="Net Banking">Net Banking</option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center">
+                                                <input type="submit" value="Submit" name="submit-expense"
+                                                    id="submit-expense">
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+                    <section id="all-transac" class="all-transac active">
+                        <div class="categoryselect">
+                            <form method="post">
+                                <span>Category: </span>
+                                <select name="transac-category" id="transac-category">
+                                    <option value="All">ALL</option>
+                                    <option value="Income">Income</option>
+                                    <option value="Expense">Expense</option>
+                                </select>
+                                <input type="submit" value="Submit" name="cat-submit" id="cat-submit">
                             </form>
                         </div>
-                    </div>
-                </section>
-                <section id="add-expense" class="add-expense inactive">
-                    <div class="expense-left">
-                        <img src="Images/expense-symbol.png" alt="expense-symbol-image" id="expense-symbol">
-                        <br>
-                        <span>Add expense</span>
-                    </div>
-                    <div class="expense-right">
-                        <div class="form">
-                            <div id="errorAddingExpense"></div>
-                            <form action="Php/inserttowallet.php" method="post" name="expenseForm" autocomplete="off">
-                                <table align="center">
-                                    <tr>
-                                        <td>
-                                            <span class="field">Amount: </span><input type="text" name="expense-amount"  min="1" id="expense-amount">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <span class="field">Source: </span>
-                                            <select name="expense-sub-category" id="expense-sub-category">
-                                                <option value="none">--select--</option>
-                                                <option value="Bills & Utilities">Bills & Utilities</option>
-                                                <option value="Business">Business</option>
-                                                <option value="Education">Education</option>
-                                                <option value="Entertainment">Entertainment</option>
-                                                <option value="Family">Family</option>
-                                                <option value="Fees & Charges">Fees & Charges</option>
-                                                <option value="Food & Beverages">Food & Beverages</option>
-                                                <option value="Friends & Lover">Friends & Lover</option>
-                                                <option value="Gifts & Donations">Gifts & Donations</option>
-                                                <option value="Health & Fitness">Health & Fitness</option>
-                                                <option value="Insurance">Insurance</option>
-                                                <option value="Investment">Investment</option>
-                                                <option value="Others">Others</option>
-                                                <option value="Shopping">Shopping</option>
-                                                <option value="Transportation">Transportation</option>
-                                                <option value="Travel">Travel</option>
-                                                <option value="Withdrawal">Withdrawal</option>
-                                            </select>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <span class="field">Date: </span>
-                                            <input type="date" name="expense-date" id="expense-date">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <span class="field">Description: </span><input type="text"
-                                                name="expense-desc" id="expense-desc">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <span class="field">Mode: </span>
-                                            <select name="expense-mode" id="expense-mode">
-                                                <option value="none">--select--</option>
-                                                <option value="Cash">Cash</option>
-                                                <option value="Credit Card">Credit Card</option>
-                                                <option value="Debit Card">Debit Card</option>
-                                                <option value="Net Banking">Net Banking</option>
-                                            </select>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td align="center">
-                                            <input type="submit" value="Submit" name="submit-expense"
-                                                id="submit-expense">
-                                        </td>
-                                    </tr>
-                                </table>
-                            </form>
-                        </div>
-                    </div>
-                </section>
-                <section id="all-transac" class="all-transac active">
-                    <div class="categoryselect">
-                        <form method="post">
-                            <span>Category: </span>
-                            <select name="transac-category" id="transac-category">
-                                <option value="All">ALL</option>
-                                <option value="Income">Income</option>
-                                <option value="Expense">Expense</option>
-                            </select>
-                            <input type="submit" value="Submit" name="cat-submit" id="cat-submit">
-                        </form>
-                    </div>
-                    <div class="transac-table">
-                        <table class="table">
-                            <tr>
-                                <th>S. No.</th>
-                                <th>Category</th>
-                                <th>Amount</th>
-                                <th>Sub-category</th>
-                                <th>Date</th>
-                                <th>Description</th>
-                                <th>Mode</th>
-                            </tr>                                                  
-                            <?php
-                                if(isset($_POST['cat-submit']))
-                                {
-                                    $transac_cat=$_POST['transac-category'];
-                                    switch($transac_cat)
+                        <div class="transac-table">
+                            <table class="table">
+                                <tr>
+                                    <th>S. No.</th>
+                                    <th>Category</th>
+                                    <th>Amount</th>
+                                    <th>Sub-category</th>
+                                    <th>Date</th>
+                                    <th>Description</th>
+                                    <th>Mode</th>
+                                </tr>                                                  
+                                <?php
+                                    if(isset($_POST['cat-submit']))
                                     {
-                                        case "All": $query=mysqli_query($con,"SELECT * FROM `$wallet`");
-                                                    break;
-                                        case "Income": $query=mysqli_query($con,"SELECT * FROM `$wallet` Where `Category`='Income'");
-                                                    break;
-                                        case "Expense": $query=mysqli_query($con,"SELECT * FROM `$wallet` Where `Category`='Expense'");
-                                                    break;
-                                    }
-                                    if(mysqli_num_rows($query) > 0)
-                                    {
-                                        $i=1;
-                                        while($result=mysqli_fetch_array($query))
+                                        $transac_cat=$_POST['transac-category'];
+                                        switch($transac_cat)
                                         {
+                                            case "All": $query=mysqli_query($con,"SELECT * FROM `$wallet`");
+                                                        break;
+                                            case "Income": $query=mysqli_query($con,"SELECT * FROM `$wallet` Where `Category`='Income'");
+                                                        break;
+                                            case "Expense": $query=mysqli_query($con,"SELECT * FROM `$wallet` Where `Category`='Expense'");
+                                                        break;
+                                        }
+                                        if(mysqli_num_rows($query) > 0)
+                                        {
+                                            $i=1;
+                                            while($result=mysqli_fetch_array($query))
+                                            {
 
-                                    ?>
-                                            <tr>
-                                                <td><?php echo$i++;?></td>
-                                                <td><?php echo$result[1];?></td>
-                                                <td><?php echo$result[2];?></td>
-                                                <td><?php echo$result[3];?></td>
-                                                <td><?php echo$result[4];?></td>
-                                                <td><?php echo$result[5];?></td>
-                                                <td><?php echo$result[6];?></td>
-                                            </tr>
-                                    <?php
+                                        ?>
+                                                <tr>
+                                                    <td><?php echo$i++;?></td>
+                                                    <td><?php echo$result[1];?></td>
+                                                    <td><?php echo$result[2];?></td>
+                                                    <td><?php echo$result[3];?></td>
+                                                    <td><?php echo$result[4];?></td>
+                                                    <td><?php echo$result[5];?></td>
+                                                    <td><?php echo$result[6];?></td>
+                                                </tr>
+                                        <?php
+                                            }
                                         }
                                     }
-                                }
-                            ?>
-                        </table>
-                    </div>
-                </section>
-                <section id="reports" class="reports inactive">
-                    <div class="report-left">
-                        <img src="Images/report-symbol.png" alt="reports-image" id="report-symbol">
-                        <br>
-                        <span>Reports</span>
-                    </div>
-                    <div class="report-right">
-                        <div class="dates">
-                            <span class="date">Date Wise</span>
-                            <input type="date" name="date" id="dates">
-                        </div>
-                        <form action="Php/createpdf.php" method="post">
-                            <input type="submit" value="View Online" id="date-view-online" name="date-view-online" formtarget="_blank">
-                            <input type="submit" value="Download"  id="date-download" name="date-download" formtarget="_blank">
-                        </form>
-                        <div class="months">
-                            <span class="month">Month Wise</span>
-                            <select name="month" id="months">
-                                <option value="none">--select--</option>
-                                <option value="January">January</option>
-                                <option value="February">February</option>
-                                <option value="March">March</option>
-                                <option value="April">April</option>
-                                <option value="May">May</option>
-                                <option value="June">June</option>
-                                <option value="July">July</option>
-                                <option value="August">August</option>
-                                <option value="September">September</option>
-                                <option value="October">October</option>
-                                <option value="November">November</option>
-                                <option value="December">December</option>
-                            </select>
-                        </div>
-                        <form action="Php/createpdf.php" method="post">
-                            <input type="submit" value="View Online" name="month-view-online" id="month-view-online" formtarget="_blank">
-                            <input type="submit" value="Download" name="month-download" id="month-download" formtarget="_blank">
-                        </form>
-                    </div>
-                    
-                </section>
-                <section id="pro" class="pro inactive">
-                    <div class="pro-left">
-                        <img src="Images/profile-symbol.png" alt="profile-symbol-image" id="profile-symbol">
-                        <br>
-                        <span>Profile Settings</span>
-                    </div>
-                    <div class="pro-right">
-                        <div class="form">
-                            <table align="center">
-                                <tr>
-                                    <td>
-                                        <span class="field">Username: </span>
-                                        <input type="text" value="<?php echo$profile_result[1] ?>" id="User" readonly>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="field">Password: </span>
-                                        <input type="text" id="Pass" value="<?php echo$profile_result[2] ?>" readonly>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="field">Email: </span>
-                                        <input type="email" value="<?php echo$profile_result[3] ?>" id="mail" readonly>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="field">Wallet Name: </span><input type="text" value="<?php echo$profile_result[4] ?>" id="Wallet_name" readonly>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td align="center">
-                                        <button id="Btn" data-modal-target="#Update">Update</button>
-                                        <div class="modal" id="Update">
-                                            <div class="modal-body">
-                                                <div class="modal-heading">
-                                                    <div class="title">Update</div>
-                                                    <button data-close-button class="close-button">&times;</button>
-                                                </div>
-                                                <form action="Php/updateProfile.php" method="POST"  autocomplete="off">
-                                                    <table class="loginTable">
-                                                        <tr>
-                                                            <td class="box"><input type="text" name="User" id="Username" placeholder="<?php echo$profile_result[1] ?>"></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="box"><input type="email" name="email-id" id="email" placeholder="<?php echo$profile_result[3] ?>"></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="box"><input type="text" name="wallet-name" id="wallet" placeholder="<?php echo$profile_result[4] ?>"></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="box"><input type="password" name="Pass" id="Password" placeholder="<?php echo$profile_result[2] ?>"></td>
-                                                        </tr>
-                                                        
-                                                        <tr>
-                                                            <td colspan="2" align="center"><input type="submit" value="Update" name="update" id="btn"></td>
-                                                        </tr>
-                                                    </table>
-                                                </form>
-                                            </div>
-                                        </div>
-                                        <div id="overlay"></div>
-                                    </td>
-                                </tr>
+                                ?>
                             </table>
                         </div>
-                    </div>
-                </section>
+                    </section>
+                    <section id="reports" class="reports inactive">
+                        <div class="report-left">
+                            <img src="Images/report-symbol.png" alt="reports-image" id="report-symbol">
+                            <br>
+                            <span>Reports</span>
+                        </div>
+                        <div class="report-right">
+                            <div class="dates">
+                                <span class="date">Date Wise</span>
+                                <input type="date" name="date" id="dates">
+                            </div>
+                            <form action="Php/createpdf.php" method="post">
+                                <input type="submit" value="View Online" id="date-view-online" name="date-view-online" formtarget="_blank">
+                                <input type="submit" value="Download"  id="date-download" name="date-download" formtarget="_blank">
+                            </form>
+                            <div class="months">
+                                <span class="month">Month Wise</span>
+                                <select name="month" id="months">
+                                    <option value="none">--select--</option>
+                                    <option value="January">January</option>
+                                    <option value="February">February</option>
+                                    <option value="March">March</option>
+                                    <option value="April">April</option>
+                                    <option value="May">May</option>
+                                    <option value="June">June</option>
+                                    <option value="July">July</option>
+                                    <option value="August">August</option>
+                                    <option value="September">September</option>
+                                    <option value="October">October</option>
+                                    <option value="November">November</option>
+                                    <option value="December">December</option>
+                                </select>
+                            </div>
+                            <form action="Php/createpdf.php" method="post">
+                                <input type="submit" value="View Online" name="month-view-online" id="month-view-online" formtarget="_blank">
+                                <input type="submit" value="Download" name="month-download" id="month-download" formtarget="_blank">
+                            </form>
+                        </div>
+                        
+                    </section>
+                    <section id="pro" class="pro inactive">
+                        <div class="pro-left">
+                            <img src="Images/profile-symbol.png" alt="profile-symbol-image" id="profile-symbol">
+                            <br>
+                            <span>Profile Settings</span>
+                        </div>
+                        <div class="pro-right">
+                            <div class="form">
+                                <table align="center">
+                                    <tr>
+                                        <td>
+                                            <span class="field">Username: </span>
+                                            <input type="text" value="<?php echo$profile_result[1] ?>" id="User" readonly>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span class="field">Password: </span>
+                                            <input type="text" id="Pass" value="<?php echo$profile_result[2] ?>" readonly>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span class="field">Email: </span>
+                                            <input type="email" value="<?php echo$profile_result[3] ?>" id="mail" readonly>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span class="field">Wallet Name: </span><input type="text" value="<?php echo$profile_result[4] ?>" id="Wallet_name" readonly>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="center">
+                                            <button id="Btn" data-modal-target="#Update">Update</button>
+                                            <div class="modal" id="Update">
+                                                <div class="modal-body">
+                                                    <div class="modal-heading">
+                                                        <div class="title">Update</div>
+                                                        <button data-close-button class="close-button">&times;</button>
+                                                    </div>
+                                                    <form action="Php/updateProfile.php" method="POST"  autocomplete="off">
+                                                        <table class="loginTable">
+                                                            <tr>
+                                                                <td class="box"><input type="text" name="User" id="Username" placeholder="<?php echo$profile_result[1] ?>"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="box"><input type="email" name="email-id" id="email" placeholder="<?php echo$profile_result[3] ?>"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="box"><input type="text" name="wallet-name" id="wallet" placeholder="<?php echo$profile_result[4] ?>"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="box"><input type="password" name="Pass" id="Password" placeholder="<?php echo$profile_result[2] ?>"></td>
+                                                            </tr>
+                                                            
+                                                            <tr>
+                                                                <td colspan="2" align="center"><input type="submit" value="Update" name="update" id="btn"></td>
+                                                            </tr>
+                                                        </table>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <div id="overlay"></div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+                </div>
             </div>
         </div>
-    </div>
-    <script src="Js/pop-up.js"></script>
-    <script src="Js/account-nav.js"></script>
-    <script src="Js/loader.js"></script>
-    <script src="Js/account-income-validation.js"></script>
-    <script src="Js/account-expense-validation.js"></script>
-</body>
+        <script src="Js/pop-up.js"></script>
+        <script src="Js/account-nav.js"></script>
+        <script src="Js/loader.js"></script>
+        <script src="Js/account-income-validation.js"></script>
+        <script src="Js/account-expense-validation.js"></script>
+    </body>
 </html>

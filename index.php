@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="CSS/custom_scroll.css">
         <link rel="stylesheet" href="CSS/index.css">
         <link rel="stylesheet" href="CSS/slideshow.css">
+        <link rel="shortcut icon" href="Images/main-logo.png" type="image/x-icon">
     </head>
     <body>
         <div class="loader">
