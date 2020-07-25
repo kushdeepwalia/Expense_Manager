@@ -66,7 +66,17 @@
     font-size: 12px;
     font-family: 'Muli', sans-serif;
 }
-#register-Username,#register-Password,#ConPassword,#email,#wallet,#login-Username,#login-Password{
+#register-Username,
+#register-Password,
+#ConPassword,
+#email,
+#wallet,
+#login-Username,
+#login-Password,
+#updateUser,
+#updateEmail,
+#updateWallet,
+#updatePassword{
     background-color: transparent;
     border: none;
     border: 1px solid rgb(85, 84, 84);
