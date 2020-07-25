@@ -24,7 +24,7 @@ registerForm.addEventListener('submit', (e) =>{
         messages.push('Error: Password Must be less than 20 char \n');
     }
     if(register_Password.value != ConPassword.value){
-        messages.push('Error: Password Not Matched');
+        messages.push('Error: Password Not Matched \n');
     }
     a=Email.value;
     f1=a.indexOf('@');
