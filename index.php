@@ -96,16 +96,16 @@
                 <div class="slider-frame modal" id="slider-frame">
                     <div class="slide-images">
                         <div class="img-container">
-                            <img src="/Images/features-1.jpg" alt="Features">
+                            <img src="Images/features-1.jpg" alt="Features">
                         </div>
                         <div class="img-container">
-                            <img src="/Images/features-2.jpg" alt="Features">
+                            <img src="Images/features-2.jpg" alt="Features">
                         </div>
                         <div class="img-container">
-                            <img src="/Images/features-3.jpg" alt="Features">
+                            <img src="Images/features-3.jpg" alt="Features">
                         </div>
                         <div class="img-container">
-                            <img src="/Images/features-5.jpg" alt="Features">
+                            <img src="Images/features-5.jpg" alt="Features">
                         </div>
                     </div>
                 </div>
