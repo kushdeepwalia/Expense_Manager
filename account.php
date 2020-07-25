@@ -44,8 +44,7 @@
         $total_percent_save = Array();
         $total_percent_save[0][0]=( $total_save[0][0] / $total_income[0][0]) *100;
         $total_percent_save[0][0]=round($total_percent_save[0][0],1);
-        $zero[0]=0;
-        $zero[1]=0;
+        $zero=[0,0,0,0];
         if($total_percent_expense[0][0]== 0) 
             $zero[0]=0;
         else
@@ -63,22 +62,29 @@
     }
     else
     {
-        $zero[0]=0;
-        $zero[1]=0;
+        $zero=[0,0,0,0];
     }
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
         <style>
             .card:nth-child(1) svg circle:nth-child(2) {
                 stroke-dashoffset: calc(440 - (440 * <?php echo$zero[0]; ?>) /100);
                 stroke: rgb(245,41,61);
             }
-            
             .card:nth-child(2) svg circle:nth-child(2) {
-                stroke-dashoffset: calc(-1 * (440 * <?php echo$zero[0]; ?>) /100);
+                <?php 
+                    if($zero[0]==0)
+                    { 
+                        $zeroStroke=0;
+                    }  
+                    else
+                    {
+                        $zeroStroke=$zero[0];
+                    } 
+                ?>
+                stroke-dashoffset: calc(-1 * (440 * <?php echo$zeroStroke; ?>) /100);
                 stroke: black;
             }
         </style>
