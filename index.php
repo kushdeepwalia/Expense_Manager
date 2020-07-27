@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -10,6 +13,7 @@
         <link rel="stylesheet" href="CSS/index.css">
         <link rel="stylesheet" href="CSS/slideshow.css">
         <link rel="shortcut icon" href="Images/main-logo.png" type="image/x-icon">
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     </head>
     <body>
         <div class="loader">
@@ -19,6 +23,12 @@
         </div>
         <img src="Images/home-pg-bg.jpg" alt="Background image" style="height: 100vh; width: 100vw; position: fixed;">
         <div class="content hide">
+            <?php 
+                if(isset($_SESSION['errorUsername'])) 
+                    echo"<div class='loginFormError'><script>swal({title:'Username not Exist',text:'Please Enter the Correct One',icon:'warning'});</script></div>";
+                if(isset($_SESSION['errorPassword'])) 
+                    echo"<div class='loginFormError'><script>swal({title:'Password not Matched with this Username',text:'Please Enter the Correct One',icon:'warning'});</script></div>";
+            ?>
             <header class="head">
                 <a href="index.php">
                     <div class="logo-head">
@@ -48,6 +58,7 @@
                                     </tr>
                                 </table>
                             </form>
+                            
                         </div>
                     </div>
                     <button data-modal-target="#register" id="registerBtn">Register</button>
@@ -91,7 +102,7 @@
                     <h1>track your <br>expense</h1>
                 </div>
                 <p>A complete solution to track your all the expenses bared by your <br> pocket and manage your personal finance.</p>
-
+                
                 <button data-modal-target="#slider-frame" id="features">Features <img src="Images/right arrow.png" alt="arrow"></button>
                 <div class="slider-frame modal" id="slider-frame">
                     <div class="slide-images">
@@ -117,10 +128,3 @@
         <script src="Js/index-register-validation.js"></script>
     </body>
 </html>
-<?php
-    $username_taken=$_GET['username-taken'];
-    if(strcmp("yes",$username_taken)==0)
-    {
-        echo"<script>alert('Username Taken')</script>";
-    }
-?>

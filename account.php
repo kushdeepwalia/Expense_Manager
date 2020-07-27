@@ -117,6 +117,7 @@
         <link rel="stylesheet" href="CSS/custom_scroll.css">
         <link rel="stylesheet" href="CSS/progresscircle.css">
         <link rel="shortcut icon" href="Images/main-logo.png" type="image/x-icon">
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     </head>
 
     <body>
@@ -378,6 +379,10 @@
                                             case "Expense": $query=mysqli_query($con,"SELECT * FROM `$wallet` Where `Category`='Expense'");
                                                         break;
                                         }
+                                        if(mysqli_num_rows($query) == 0)
+                                        {
+                                           echo"<div class='TransactionError'><script>swal({title:'No Transaction',text:'Please add one in income or expense tab',icon:'warning'});</script></div>";
+                                        }
                                         if(mysqli_num_rows($query) > 0)
                                         {
                                             $i=1;
@@ -409,12 +414,29 @@
                             <span>Reports</span>
                         </div>
                         <div class="report-right">
+                            <?php 
+                                if(isset($_SESSION['all-total-error'])) 
+                                {
+                                    echo"<div class='loginFormError'><script>swal({title:'Cant Generate Report',text:'No Transaction Record in your Wallet',icon:'warning'});</script></div>";
+                                    unset($_SESSION['all-total-error']);
+                                }
+                                if(isset($_SESSION['range-total-error'])) 
+                                {
+                                    echo"<div class='loginFormError'><script>swal({title:'Cant Generate Report',text:'No Transaction Record under the range entered in your Wallet',icon:'warning'});</script></div>";
+                                    unset($_SESSION['range-total-error']);
+                                }
+                                if(isset($_SESSION['date-total-error'])) 
+                                {
+                                    echo"<div class='loginFormError'><script>swal({title:'Cant Generate Report',text:'No Transaction Record of entered Date in your Wallet',icon:'warning'});</script></div>";
+                                    unset($_SESSION['date-total-error']);
+                                }
+                            ?>
                             <form action="Php/dateCreatePDF.php" method="post">
                                 <div class="dates">
                                     <span class="date">Date Wise</span>
                                     <input type="date" name="date" id="dates">
                                 </div>
-                                <input type="submit" value="View Online" id="date-view-online" name="date-view-online" formtarget="_blank">
+                                <input type="submit" value="View Online" id="date-view-online" name="date-view-online">
                                 <input type="submit" value="Download"  id="date-download" name="date-download" formtarget="_blank">
                             </form>
                             <br>
@@ -426,14 +448,14 @@
                                 <input type="date" name="startDate" id="dates"><br>
                                 <span class="date">End Date</span>
                                 <input type="date" name="endDate" id="dates"><br>
-                                <input type="submit" value="View Online" id="date-view-online" name="range-view-online" formtarget="_blank">
+                                <input type="submit" value="View Online" id="date-view-online" name="range-view-online">
                                 <input type="submit" value="Download"  id="date-download" name="range-download" formtarget="_blank">
                             </form>
                             <form action="Php/allCreatePDF.php" method="post">
                                 <div class="months">
                                     <span class="month">All Transaction</span>
                                 </div>
-                                <input type="submit" value="View Online" name="all-view-online" id="month-view-online" formtarget="_blank">
+                                <input type="submit" value="View Online" name="all-view-online" id="month-view-online">
                                 <input type="submit" value="Download" name="all-download" id="month-download" formtarget="_blank">
                             </form>
                         </div>
@@ -481,7 +503,7 @@
                                                         <button data-close-button class="close-button">&times;</button>
                                                     </div>
                                                     <div id="profileUpdateError"></div>
-                                                    <form action="Php/updateProfile.php" method="POST" id="profileForm" autocomplete="off">
+                                                    <form id="profileForm" action="Php/updateProfile.php" method="POST" autocomplete="off" >
                                                         <table class="loginTable">
                                                             <tr>
                                                                 <td class="box"><input type="text" name="User" id="updateUser" placeholder="<?php echo$profile_result[1] ?>"></td>

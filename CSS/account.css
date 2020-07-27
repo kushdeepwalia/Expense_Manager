@@ -262,7 +262,7 @@
     line-height: 40px;
     box-shadow: 0px 0px 20px dimgrey;
 }
-#errorAddingIncome,#errorAddingExpense{
+#errorAddingIncome,#errorAddingExpense,#profileUpdateError{
     line-height: 20px;
 }
 ::-webkit-inner-spin-button,

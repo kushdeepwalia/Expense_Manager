@@ -6,7 +6,7 @@ const proWallet = document.getElementById('updateWallet')
 const error_profile = document.getElementById('profileUpdateError')
 
 proForm.addEventListener('submit', (e) =>{
-    let messages=[]
+    let messages=[];
     if(proUser.value === '' || proUser.value === null){
         messages.push('Error: Username Not Entered \n');
     }
@@ -21,9 +21,6 @@ proForm.addEventListener('submit', (e) =>{
     }
     else if(proPass.value.length > 20){
         messages.push('Error: Password Must be less than 20 char \n');
-    }
-    if(proPass.value != ConPassword.value){
-        messages.push('Error: Password Not Matched');
     }
     a=proEmail.value;
     f1=a.indexOf('@');

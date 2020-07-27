@@ -21,7 +21,7 @@
         $exp_tot=mysqli_query($con,"SELECT Sum(Amount) FROM `$wallet` WHERE `Category`='Expense' AND `Date` BETWEEN '$startDate' AND '$endDate'");
         $exp_result=mysqli_fetch_array($exp_tot);
         $exp_tot_sub=mysqli_query($con,"SELECT `Sub Category`,Sum(Amount) FROM `$wallet` WHERE `Category`='Expense' AND `Date` BETWEEN '$startDate' AND '$endDate' GROUP BY `Sub Category`");
-
+        
         $pdf=new PDF_SECTOR();
         $pdf->AddPage();
         $pdf->SetLeftMargin(6);
@@ -48,7 +48,7 @@
         $pdf->Cell(40,11,$wallet,"0","1");
         $pdf->Ln(4);
         
-        //mreged cell
+        //merged cell
         $pdf->SetFont("Arial","B","16");
         $pdf->Cell(198,10,"All Transactions","0","1","C");
         
@@ -77,92 +77,94 @@
             $pdf->Cell(30,10,$result[6],"1","1","C");
         }
 
-        $pdf->AddPage();
-        $pieX=103;
-        $pieY=70;
-        $r=45;
-        $legendX=160;
-        $legendY=30;
-        $degunit=360/$exp_result[0];
-        $exp_res_sub_tot=mysqli_fetch_all($exp_tot_sub);
-        $currentAngle=0;
-        $i=0;
-        while($i<mysqli_num_rows($query2))
+        if(mysqli_num_rows($query2)>0)
         {
-            switch($exp_res_sub_tot[$i][0])
+            $pdf->AddPage();
+            $pieX=103;
+            $pieY=70;
+            $r=45;
+            $legendX=160;
+            $legendY=30;
+            $degunit=360/$exp_result[0];
+            $exp_res_sub_tot=mysqli_fetch_all($exp_tot_sub);
+            $currentAngle=0;
+            $i=0;
+            while($i<mysqli_num_rows($query2))
             {
-                case "Bills":               $color=[223,32,32]; //Red 
-                                            break;
-                case "Business":            $color=[249,249,6]; //Yellow
-                                            break;
-                case "Education":           $color=[255,153,90]; //Peach
-                                            break;
-                case "Entertainment":       $color=[0,153,255]; //Light Blue 
-                                            break;
-                case "Family":              $color=[20,184,20]; //Green
-                                            break;
-                case "Fees":                $color=[117,77,179]; //Purple
-                                            break;
-                case "Food & Drinks":       $color=[3,3,99]; //Deep Blue
-                                            break;
-                case "Friends & Lover":     $color=[255,102,140]; //Pink
-                                            break;
-                case "Gifts":               $color=[0,153,153]; //Teal
-                                            break;
-                case "Health":              $color=[255,102,0]; //Orange
-                                            break;
-                case "Insurance":           $color=[102,102,153]; //Move - Light Purple 
-                                            break;
-                case "Investment":          $color=[32,32,22]; //Dark Grey
-                                            break;
-                case "Others":              $color=[102,0,51]; //Magenta 
-                                            break;
-                case "Shopping":            $color=[0,77,0]; //Dark Green
-                                            break;
-                case "Transportation":      $color=[91,57,5]; //Brown 
-                                            break;
-                case "Travel":              $color=[163,163,194]; //Light Grey
-                                            break;
-                case "Withdrawal":          $color=[166,89,89]; //Dull Red
-                                            break;
+                switch($exp_res_sub_tot[$i][0])
+                {
+                    case "Bills":               $color=[223,32,32]; //Red 
+                                                break;
+                    case "Business":            $color=[249,249,6]; //Yellow
+                                                break;
+                    case "Education":           $color=[255,153,90]; //Peach
+                                                break;
+                    case "Entertainment":       $color=[0,153,255]; //Light Blue 
+                                                break;
+                    case "Family":              $color=[20,184,20]; //Green
+                                                break;
+                    case "Fees":                $color=[117,77,179]; //Purple
+                                                break;
+                    case "Food & Drinks":       $color=[3,3,99]; //Deep Blue
+                                                break;
+                    case "Friends & Lover":     $color=[255,102,140]; //Pink
+                                                break;
+                    case "Gifts":               $color=[0,153,153]; //Teal
+                                                break;
+                    case "Health":              $color=[255,102,0]; //Orange
+                                                break;
+                    case "Insurance":           $color=[102,102,153]; //Move - Light Purple 
+                                                break;
+                    case "Investment":          $color=[32,32,22]; //Dark Grey
+                                                break;
+                    case "Others":              $color=[102,0,51]; //Magenta 
+                                                break;
+                    case "Shopping":            $color=[0,77,0]; //Dark Green
+                                                break;
+                    case "Transportation":      $color=[91,57,5]; //Brown 
+                                                break;
+                    case "Travel":              $color=[163,163,194]; //Light Grey
+                                                break;
+                    case "Withdrawal":          $color=[166,89,89]; //Dull Red
+                                                break;
+                }
+                $deg[$i]=$degunit*$exp_res_sub_tot[$i][1];
+                $pdf->SetFillColor($color[0],$color[1],$color[2]);
+                $pdf->SetDrawColor($color[0],$color[1],$color[2]);
+                $pdf->Sector($pieX,$pieY,$r,$currentAngle,$currentAngle+$deg[$i]);
+                $currentAngle+=$deg[$i];
+                $pdf->Rect($legendX,$legendY,5,5,"DF");
+                $pdf->SetXY($legendX + 6,$legendY);
+                $pdf->Cell(50,5,$exp_res_sub_tot[$i][0],0,0);
+                $legendY+=8;
+                $i+=1;
             }
-            $deg[$i]=$degunit*$exp_res_sub_tot[$i][1];
-            $pdf->SetFillColor($color[0],$color[1],$color[2]);
-            $pdf->SetDrawColor($color[0],$color[1],$color[2]);
-            $pdf->Sector($pieX,$pieY,$r,$currentAngle,$currentAngle+$deg[$i]);
-            $currentAngle+=$deg[$i];
-            $pdf->Rect($legendX,$legendY,5,5,"DF");
-            $pdf->SetXY($legendX + 6,$legendY);
-            $pdf->Cell(50,5,$exp_res_sub_tot[$i][0],0,0);
-            $legendY+=8;
-            $i+=1;
-        }
-        
-        //mreged cell
-        $pdf->SetDrawColor(0,0,0);
-        $pdf->setTextColor(0,0,0);
-        $pdf->SetLeftMargin(58);
-        $pdf->SetFont("Arial","B","16");
-        $pdf->Cell(298,90,"","1","1","C");
-        $pdf->Cell(94,15,"Category Wise","0","1","C");
-        
-        //table column names
-        $pdf->SetFont("Arial","B","16");
-        $pdf->setTextColor(0,0,0);
-        $pdf->Cell(24,10,"S. No.","1","0","C");
-        $pdf->Cell(42,10,"Sub-Cat.","1","0","C");
-        $pdf->Cell(28,10,"Amount","1","1","C");
-
-        $i=1;
-        $pdf->SetFont("Arial","","12");
-        while($res=mysqli_fetch_array($query3))
-        {   
+            
+            //mreged cell
+            $pdf->SetDrawColor(0,0,0);
             $pdf->setTextColor(0,0,0);
-            $pdf->Cell(24,10,$i++,"1","0","C");
-            $pdf->Cell(42,10,$res[3],"1","0","C");
-            $pdf->Cell(28,10,$res[2],"1","1","C");
-        }
+            $pdf->SetLeftMargin(58);
+            $pdf->SetFont("Arial","B","16");
+            $pdf->Cell(298,90,"","1","1","C");
+            $pdf->Cell(94,15,"Category Wise","0","1","C");
+            
+            //table column names
+            $pdf->SetFont("Arial","B","16");
+            $pdf->setTextColor(0,0,0);
+            $pdf->Cell(24,10,"S. No.","1","0","C");
+            $pdf->Cell(42,10,"Sub-Cat.","1","0","C");
+            $pdf->Cell(28,10,"Amount","1","1","C");
 
+            $i=1;
+            $pdf->SetFont("Arial","","12");
+            while($res=mysqli_fetch_array($query3))
+            {   
+                $pdf->setTextColor(0,0,0);
+                $pdf->Cell(24,10,$i++,"1","0","C");
+                $pdf->Cell(42,10,$res[3],"1","0","C");
+                $pdf->Cell(28,10,$res[2],"1","1","C");
+            }
+        }
         
         if(isset($_POST['range-view-online']))
             $pdf->output();
@@ -171,6 +173,8 @@
     }
     else
     {
+        session_start();
+        $_SESSION['range-total-error']="No Record";
         header("location:../account.php");
     }
 ?>
