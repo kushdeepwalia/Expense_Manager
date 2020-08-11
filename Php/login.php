@@ -1,5 +1,5 @@
 <?php
-    $con=mysqli_connect('localhost','root','');
+    $con=mysqli_connect('localhost:3306','root','');
     mysqli_select_db($con,'expense_clients') or die("Could connect to the database");
     $username=$_POST['Username'];
     $password=$_POST['Password'];
