@@ -1,5 +1,6 @@
 <?php
-    $con=mysqli_connect('localhost','root','');
+    // $con=mysqli_connect('localhost','root','');
+    $con = mysqli_connect('ec2-52-200-48-116.compute-1.amazonaws.com','ojslsnkjsiizlx','acc39f915e3407c66e7517b9f37acab4e421923af39e4c4559c7829aba1a349b','d7nlvnmv8to1eo','5432');
     mysqli_select_db($con,'expense_clients') or die("Could connect to the database");
     $username=$_POST['Username'];
     $email=$_POST['email'];
