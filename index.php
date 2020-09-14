@@ -54,7 +54,7 @@
                                         <td class="box"><input type="password" name="Password" id="login-Password" placeholder="Enter your Password"></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2" align="center"><input type="submit" value="Login" id="btn"></td>
+                                        <td colspan="2" align="center"><input type="submit" name="submit" value="Login" id="btn"></td>
                                     </tr>
                                 </table>
                             </form>
