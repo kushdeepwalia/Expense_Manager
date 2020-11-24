@@ -1,10 +1,13 @@
 <?php
     session_start();
-    $username=$_SESSION['username'];
-    if(!($username))
+    $wallet_name=$_SESSION['wallet_name'];
+    if(!($wallet_name))
         header("location:index.php");
     $conn=mysqli_connect('localhost','root','');
     mysqli_select_db($conn,'expense_clients') or die("Could connect to the database"); 
+    $var = explode("-",$wallet_name);
+    $username = $var[0];
+    $wallet = $var[1];
     $profile_query=mysqli_query($conn,"SELECT * FROM `all_users` WHERE `Username`='$username'");
     $profile_result=mysqli_fetch_array($profile_query);
     $email=$profile_result[3];
@@ -12,10 +15,7 @@
     mysqli_close($conn);
 
     $con=mysqli_connect('localhost','root','');
-    mysqli_select_db($con,$username) or die("Could connect to the database"); 
-    $result = mysqli_query($con,"show tables");
-    $table = mysqli_fetch_array($result);
-    $wallet=$table[0];
+    mysqli_select_db($con,'wallets') or die("Could connect to the database");
 
     $total_expense = Array();
     $total_save = Array();
@@ -25,22 +25,27 @@
     $num_row=0;
     $zero=[0,0,0,0];
     
-    $_SESSION['wallet']=$wallet;
-    $query=mysqli_query($con,"SELECT * FROM `$wallet`");
+    $query=mysqli_query($con,"SELECT * FROM `$wallet_name`");
+    if(!(isset($_GET['transac-category'])))
+    {
+        $transac_cat="All";
+        $_GET['transac-category'] = "Temp";
+    }
+
     if(mysqli_num_rows($query)!=0)
     {
-        $queryIncome="SELECT * FROM `$wallet` Where `Category`='Income'";
+        $queryIncome="SELECT * FROM `$wallet_name` Where `Category`='Income'";
         $query_income=mysqli_query($con,$queryIncome);
-        $queryExpense="SELECT * FROM `$wallet` Where `Category`='Expense'";
+        $queryExpense="SELECT * FROM `$wallet_name` Where `Category`='Expense'";
         $query_expense=mysqli_query($con,$queryExpense);
         for($i=0;$i<mysqli_num_rows($query_income);$i++)
         {
-            $income=mysqli_query($con,"SELECT SUM(Amount) FROM `$wallet` Where `Category`='Income'");
+            $income=mysqli_query($con,"SELECT SUM(Amount) FROM `$wallet_name` Where `Category`='Income'");
             $total_income[$i]=mysqli_fetch_array($income);
         }
         for($i=0;$i<mysqli_num_rows($query_expense);$i++)
         {
-            $expense=mysqli_query($con,"SELECT SUM(Amount) FROM `$wallet` Where `Category`='Expense'");
+            $expense=mysqli_query($con,"SELECT SUM(Amount) FROM `$wallet_name` Where `Category`='Expense'");
             $total_expense[$i]=mysqli_fetch_array($expense);
         }
         $num_row=mysqli_num_rows($query_income);
@@ -111,11 +116,11 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Hey <?php echo$username; ?></title>
-        <link rel="stylesheet" href="CSS/pop-up.css">
-        <link rel="stylesheet" href="CSS/loading.css">
-        <link rel="stylesheet" href="CSS/account.css">
-        <link rel="stylesheet" href="CSS/custom_scroll.css">
-        <link rel="stylesheet" href="CSS/progresscircle.css">
+        <link rel="stylesheet" href="./CSS/account.css">
+        <link rel="stylesheet" href="./CSS/pop-up.css">
+        <link rel="stylesheet" href="./CSS/loading.css">
+        <link rel="stylesheet" href="./CSS/custom_scroll.css">
+        <link rel="stylesheet" href="./CSS/progresscircle.css">
         <link rel="shortcut icon" href="Images/main-logo.png" type="image/x-icon">
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     </head>
@@ -235,8 +240,7 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <span class="field">Description: </span><input type="text"
-                                                    name="income-desc" id="income-desc">
+                                                <span class="field">Description: </span><input type="text" name="income-desc" id="income-desc" maxlength="12">
                                             </td>
                                         </tr>
                                         <tr>
@@ -245,9 +249,8 @@
                                                 <select name="income-mode" id="income-mode">
                                                     <option value="none">--select--</option>
                                                     <option value="Cash">Cash</option>
-                                                    <option value="Credit Card">Credit Card</option>
-                                                    <option value="Debit Card">Debit Card</option>
                                                     <option value="Net Banking">Net Banking</option>
+                                                    <option value="UPI">UPI</option>
                                                 </select>
                                             </td>
                                         </tr>
@@ -270,17 +273,27 @@
                         <div class="expense-right">
                             <div class="form">
                                 <?php
-                                    if($num_row<=0)
+                                    if($zero[3]<=0)
                                     {
                                         echo"<div class='error'>Please Add Income First</div>";
                                     }
                                 ?>
                                 <div id="errorAddingExpense"></div>
+                                <?php
+                                    if($zero[3]<=0)
+                                        echo "<form id='expenseForm'>";
+                                    else
+                                    {
+                                ?>
                                 <form action="Php/inserttowallet.php" method="post" id="expenseForm" autocomplete="off">
+                                <?php
+                                    }
+                                ?>
                                     <table align="center">
                                         <tr>
                                             <td>
-                                                <span class="field">Amount: </span><input type="text" name="expense-amount"  min="1" id="expense-amount">
+                                                <span class="field">Amount: </span>
+                                                <input type="text" name="expense-amount" min="1" id="expense-amount">
                                             </td>
                                         </tr>
                                         <tr>
@@ -317,7 +330,7 @@
                                         <tr>
                                             <td>
                                                 <span class="field">Description: </span><input type="text"
-                                                    name="expense-desc" id="expense-desc">
+                                                    name="expense-desc" id="expense-desc" maxlength="12">
                                             </td>
                                         </tr>
                                         <tr>
@@ -329,6 +342,7 @@
                                                     <option value="Credit Card">Credit Card</option>
                                                     <option value="Debit Card">Debit Card</option>
                                                     <option value="Net Banking">Net Banking</option>
+                                                    <option value="UPI">UPI</option>
                                                 </select>
                                             </td>
                                         </tr>
@@ -345,14 +359,31 @@
                     </section>
                     <section id="all-transac" class="all-transac active">
                         <div class="categoryselect">
-                            <form method="post">
+                            <form method="get">
                                 <span>Category: </span>
                                 <select name="transac-category" id="transac-category">
-                                    <option value="All">ALL</option>
-                                    <option value="Income">Income</option>
-                                    <option value="Expense">Expense</option>
+                                    <?php
+                                        if(isset($_GET['transac-category']))
+                                        {
+                                            if($_GET['transac-category'] == "Income"){
+                                                echo "<option value='Income'>Income</option>";
+                                                echo "<option value='Expense'>Expense</option>";
+                                                echo "<option value='All'>ALL</option>";
+                                            }
+                                            else if($_GET['transac-category'] == "Expense"){
+                                                echo "<option value='Expense'>Expense</option>";
+                                                echo "<option value='Income'>Income</option>";
+                                                echo "<option value='All'>ALL</option>";
+                                            }
+                                            else{
+                                                echo "<option value='All'>ALL</option>";
+                                                echo "<option value='Income'>Income</option>";
+                                                echo "<option value='Expense'>Expense</option>";
+                                            }
+                                        }
+                                    ?>
                                 </select>
-                                <input type="submit" value="Submit" name="cat-submit" id="cat-submit">
+                                <input type="submit" value="Submit" id="cat-submit">
                             </form>
                         </div>
                         <div class="transac-table">
@@ -367,19 +398,24 @@
                                     <th>Mode</th>
                                 </tr>                                                  
                                 <?php
-                                    if(isset($_POST['cat-submit']))
+                                    if(isset($_GET['transac-category']))
                                     {
-                                        $transac_cat=$_POST['transac-category'];
+                                        if($_GET['transac-category'] != "Temp")
+                                            $transac_cat=$_GET['transac-category'];
                                         switch($transac_cat)
                                         {
-                                            case "All": $query=mysqli_query($con,"SELECT * FROM `$wallet`");
+                                            case "All": $query=mysqli_query($con,"SELECT * FROM `$wallet_name`");
                                                         break;
-                                            case "Income": $query=mysqli_query($con,"SELECT * FROM `$wallet` Where `Category`='Income'");
+                                            case "Income": $query=mysqli_query($con,"SELECT * FROM `$wallet_name` Where `Category`='Income'");
                                                         break;
-                                            case "Expense": $query=mysqli_query($con,"SELECT * FROM `$wallet` Where `Category`='Expense'");
+                                            case "Expense": $query=mysqli_query($con,"SELECT * FROM `$wallet_name` Where `Category`='Expense'");
                                                         break;
                                         }
-                                        if(mysqli_num_rows($query) == 0)
+                                        if(mysqli_num_rows($query) == 0 && $transac_cat == "All" && $_GET['transac-category'] == "Temp")
+                                        {
+                                           //nothing to be added
+                                        }
+                                        else if(mysqli_num_rows($query) == 0)
                                         {
                                            echo"<div class='TransactionError'><script>swal({title:'No Transaction',text:'Please add one in income or expense tab',icon:'warning'});</script></div>";
                                         }
@@ -539,7 +575,23 @@
         <script src="Js/account-nav.js"></script>
         <script src="Js/loader.js"></script>
         <script src="Js/account-income-validation.js"></script>
-        <script src="Js/account-expense-validation.js"></script>
+        <?php
+            if($zero[3]>0)
+            {
+                echo"<script src='Js/account-expense-validation.js'></script>";
+            }
+            else
+            {
+        ?>
+            <script>
+                const expenseForm = document.getElementById('expenseForm')
+                expenseForm.addEventListener('submit',(e) =>{
+                    e.preventDefault()
+                })
+            </script>
+        <?php
+            }
+        ?>
         <script src="Js/account-profile-validation.js"></script>
     </body>
 </html>

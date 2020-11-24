@@ -3,8 +3,9 @@
     mysqli_select_db($con,'expense_clients') or die("Could connect to the database");
     $username=$_POST['Username'];
     $password=$_POST['Password'];
-    $query=mysqli_query($con,"SELECT * FROM `All_Users` where `Username`='$username'");
+    $query=mysqli_query($con,"SELECT * FROM `all_users` WHERE `Username`='$username'");
     $row=mysqli_fetch_array($query);
+    print_r($row);
     session_start();
     if($row>0 && strcmp($row['Password'],$password)!=0)
     {
@@ -13,7 +14,7 @@
     }
     else if($row > 0)
     {
-        $_SESSION['username']=$username;
+        $_SESSION['wallet_name']=$row['Username']."-".$row['Wallet Name'];
         header("location:../account.php");
     }
     else

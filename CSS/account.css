@@ -5,12 +5,19 @@
     padding: 0;
     box-sizing: border-box;
 }
+body{
+    overflow-x: hidden !important;
+}
 .header{
     display: flex;
     height: 11vh;
     width: 100vw;
     justify-content: space-between;
     box-shadow: 4px 4px 4px dimgray;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: white;
 }
 .logo_head{
     display: flex;
@@ -85,6 +92,9 @@
     width: 70vw;
     background-color: rgb(245, 41, 61);
     box-shadow: 4px 4px 4px grey;
+    position: sticky;
+    top: 11.2vh;
+    z-index: 95;
 }
 .nav ul{
     display: flex;

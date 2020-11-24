@@ -1,25 +1,27 @@
 <?php
     require("../fpdf/pdf-sector.php");
     session_start();
-    $username=$_SESSION['username'];
-    $wallet=$_SESSION['wallet'];
+    $wallet_name=$_SESSION['wallet_name'];
+    $var = explode("-",$wallet_name);
+    $username = $var[0];
+    $wallet = $var[1];
     $email=$_SESSION['email'];
     $date=$_POST['date'];
     $filename=$wallet;
     $filename.=".pdf";
 
     $con=mysqli_connect('localhost','root','');
-    mysqli_select_db($con,$username) or die("Could connect to the database");
+    mysqli_select_db($con,'wallets') or die("Could connect to the database");
 
-    $query=mysqli_query($con,"SELECT * FROM `$wallet` WHERE `Date`='$date'");
+    $query=mysqli_query($con,"SELECT * FROM `$wallet_name` WHERE `Date`='$date'");
 
     if(mysqli_num_rows($query)>0)
     {
-        $query2=mysqli_query($con,"SELECT * FROM `$wallet` WHERE `Category`='Expense' AND `Date`='$date'");
-        $query3=mysqli_query($con,"SELECT * FROM `$wallet` WHERE `Category`='Expense' AND `Date`='$date'");
-        $exp_tot=mysqli_query($con,"SELECT Sum(Amount) FROM `$wallet` WHERE `Category`='Expense' AND `Date`='$date'");
+        $query2=mysqli_query($con,"SELECT * FROM `$wallet_name` WHERE `Category`='Expense' AND `Date`='$date'");
+        $query3=mysqli_query($con,"SELECT `Sub Category`,Sum(Amount) FROM `$wallet_name` WHERE `Category`='Expense' AND `Date`='$date' GROUP BY `Sub Category`");
+        $exp_tot=mysqli_query($con,"SELECT Sum(Amount) FROM `$wallet_name` WHERE `Category`='Expense' AND `Date`='$date'");
         $exp_result=mysqli_fetch_array($exp_tot);
-        $exp_tot_sub=mysqli_query($con,"SELECT `Sub Category`,Sum(Amount) FROM `$wallet` WHERE `Category`='Expense' AND `Date`='$date' GROUP BY `Sub Category`");
+        $exp_tot_sub=mysqli_query($con,"SELECT `Sub Category`,Sum(Amount) FROM `$wallet_name` WHERE `Category`='Expense' AND `Date`='$date' GROUP BY `Sub Category`");
         
         $pdf=new PDF_SECTOR();
         $pdf->AddPage();
@@ -88,7 +90,7 @@
             $exp_res_sub_tot=mysqli_fetch_all($exp_tot_sub);
             $currentAngle=0;
             $i=0;
-            while($i<mysqli_num_rows($query2))
+            while($i<count($exp_res_sub_tot))
             {
                 switch($exp_res_sub_tot[$i][0])
                 {
@@ -160,8 +162,8 @@
             {   
                 $pdf->setTextColor(0,0,0);
                 $pdf->Cell(24,10,$i++,"1","0","C");
-                $pdf->Cell(42,10,$res[3],"1","0","C");
-                $pdf->Cell(28,10,$res[2],"1","1","C");
+                $pdf->Cell(42,10,$res[0],"1","0","C");
+                $pdf->Cell(28,10,$res[1],"1","1","C");
             }
         }
         
