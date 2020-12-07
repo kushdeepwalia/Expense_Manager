@@ -12,7 +12,7 @@
         $query="SELECT `Username` FROM `all_users` WHERE Username='$username'";
         $ret=mysqli_query($con,$query);
         session_start();
-        if($ret > 0)
+        if(mysqli_num_rows($ret) > 0)
         {
             header("location:../index.php");//if username is taken then show message
         }
